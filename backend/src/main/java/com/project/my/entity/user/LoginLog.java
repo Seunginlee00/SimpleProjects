@@ -1,6 +1,6 @@
 package com.project.my.entity.user;
 
-import com.java.project.api.common.entity.BaseEntity;
+import com.project.my.common.entity.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

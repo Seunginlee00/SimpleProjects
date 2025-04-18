@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -17,8 +16,7 @@ public class ErrorResponseDto {
   private final String message;
   private final LocalDateTime time;
   private String stackTrace;
-  private List<ValidationError> validErrors;
-
+  private List<ValidationError> validErrors = new ArrayList<>(); // 초기화
 
   @Data
   @RequiredArgsConstructor
@@ -27,10 +25,18 @@ public class ErrorResponseDto {
     private final String message;
   }
 
-  public void addValidationError(String field, String message){
-    if(Objects.isNull(validErrors)){
-      validErrors = new ArrayList<>();
+  // stackTrace가 존재하면 추가
+  public void setStackTraceIfNeeded(String stackTrace) {
+    if (stackTrace != null) {
+      this.stackTrace = stackTrace;
     }
-    validErrors.add(new ValidationError(field, message));
   }
+
+  public void addValidationError(String field, String message){
+    if (this.validErrors == null) {
+      this.validErrors = new ArrayList<>();
+    }
+    this.validErrors.add(new ValidationError(field, message));
+  }
+
 }

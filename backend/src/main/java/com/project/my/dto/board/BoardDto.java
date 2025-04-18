@@ -1,16 +1,15 @@
 package com.project.my.dto.board;
 
-import com.java.project.api.entity.board.Board;
-import com.java.project.api.entity.board.BoardConfig;
-import com.java.project.api.entity.enums.BoardType;
 
+import com.project.my.entity.board.Board;
+import com.project.my.entity.board.BoardConfig;
 import java.time.LocalDateTime;
 
 public record BoardDto(
         Long boardId,
         LocalDateTime createdDate,
         LocalDateTime modifiedDate,
-        BoardType boardType,
+        com.project.my.entity.enums.BoardType boardType,
         String classify,
         String subject,
         String content,

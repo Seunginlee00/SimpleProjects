@@ -1,8 +1,7 @@
 package com.project.my.dto.login;
 
-import com.java.project.api.entity.enums.Role;
-import com.java.project.api.entity.user.Users;
-
+import com.project.my.entity.enums.Role;
+import com.project.my.entity.user.Users;
 import java.util.Optional;
 
 public record UserRegisterRequest(

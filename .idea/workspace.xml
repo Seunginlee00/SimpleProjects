@@ -4,62 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="766a5e40-1b56-4c53-8202-bd9ada35af74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/entity/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/exception/AlreadyExistElementException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/exception/ErrorResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/exception/GlobalExceptionHandler2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/exception/NotFoundElementException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/QuerydslConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/CustomUserDetailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/CustomUsersDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/JwtFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/JwtProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/LoginFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/security/CorsConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/security/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/controller/BoardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/BoardConfigDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/BoardDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/BoardInquiryDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/CommentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/login/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/login/TokenInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/login/UserRegisterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/response/JwtResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/response/SearchDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/response/UserResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/BoardConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/BoardConfigRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/BoardRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/Comment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/CommentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/Impl/BoardRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/enums/BoardType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/enums/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/LoginLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/Users.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/query/LoginLogRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/query/UserRepositoryImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/query/UsersRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/service/board/BoardService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/service/board/BoardServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+    <list default="true" id="766a5e40-1b56-4c53-8202-bd9ada35af74" name="Changes" comment="init">
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/gradle_wrapper.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/backend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/backend/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/project/java/demo/DemoApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/exception/ErrorResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/exception/ErrorResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/common/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/CustomUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/CustomUserDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/CustomUsersDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/CustomUsersDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/JwtFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/JwtFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/JwtProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/LoginFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/jwt/LoginFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/config/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/controller/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/BoardConfigDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/BoardConfigDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/BoardDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/BoardDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/BoardInquiryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/BoardInquiryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/CommentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/board/CommentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/login/UserRegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/login/UserRegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/response/SearchDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/response/SearchDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/response/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/dto/response/UserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/BoardConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/BoardConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/BoardConfigRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/BoardConfigRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/Impl/BoardRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/board/Impl/BoardRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/LoginLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/LoginLog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/query/LoginLogRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/query/LoginLogRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/query/UserRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/query/UserRepositoryImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/query/UsersRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/entity/user/query/UsersRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/service/board/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/service/board/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/service/board/BoardServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/project/my/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/project/my/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application-dev.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,12 +57,32 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$/backend">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="demo" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="demo" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="demo" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="demo" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -91,38 +94,94 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="4a067474-a086-44bf-813f-adde471aa0da" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2vqbhKgRIQiVQw58be8w74pd4m1" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "back",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/SimpleProjects/backend/src/main/java/com/project/my",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build backend.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.backend [compileJava].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.MainApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;back&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SimpleProjects/backend/src/main/java/com/project/my&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\SimpleProjects\backend\src\main\java\com\project\my" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.MainApplication">
+    <configuration name="backend [compileJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/backend" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="compileJava" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="MainApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="ACTIVE_PROFILES" value="dev" />
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="demo.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.my.MainApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Gradle.backend [compileJava]" />
+      <item itemvalue="Spring Boot.MainApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.backend [compileJava]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -140,11 +199,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744875670072</updated>
-      <workItem from="1744875671143" duration="211000" />
+      <workItem from="1744875671143" duration="6149000" />
+      <workItem from="1744950554803" duration="2640000" />
     </task>
+    <task id="LOCAL-00001" summary="init">
+      <option name="closed" value="true" />
+      <created>1744875958863</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1744875958863</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
   </component>
 </project>

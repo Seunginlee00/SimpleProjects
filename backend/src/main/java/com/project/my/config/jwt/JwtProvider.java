@@ -68,26 +68,6 @@ public class JwtProvider {
                 .getBody();
     }
 
-    /**
-     * JWT 토큰 정보 추출
-     */
-//    public Authentication getAuthentication(String jwt) {
-//        Claims claims = getClaims(jwt);
-//
-//        String auth = Optional.ofNullable(claims.get("auth", String.class))
-//                .orElseThrow(() -> new RuntimeException("잘못된 토큰입니다."));
-//        Long userId = Optional.ofNullable(claims.get("userId", Long.class))
-//                .orElseThrow(() -> new RuntimeException("잘못된 토큰입니다."));
-//
-//        Collection<GrantedAuthority> authorities = Arrays.stream(auth.split(","))
-//                .map(SimpleGrantedAuthority::new)
-//                .collect(Collectors.toList());
-//
-//        UserDetails principal = new CustomUsersDetails(userId, claims.getSubject(), "", authorities);
-//        return new UsernamePasswordAuthenticationToken(principal, "", authorities);
-//    }
-
-
 
     /**
      * 토큰 검증

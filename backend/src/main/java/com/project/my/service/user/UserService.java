@@ -1,23 +1,18 @@
 package com.project.my.service.user;
 
-import com.java.project.api.common.exception.AlreadyExistElementException;
-import com.java.project.api.common.exception.NotFoundElementException;
-import com.java.project.api.config.jwt.JwtProvider;
-import com.java.project.api.dto.login.UserRegisterRequest;
-import com.java.project.api.dto.response.SearchDto;
-import com.java.project.api.dto.response.UserResponse;
-import com.java.project.api.entity.user.Users;
-import com.java.project.api.entity.user.query.UserRepositoryImpl;
-import com.java.project.api.entity.user.query.UsersRepository;
+import com.project.my.common.exception.AlreadyExistElementException;
+import com.project.my.common.exception.NotFoundElementException;
+import com.project.my.dto.login.UserRegisterRequest;
+import com.project.my.dto.response.SearchDto;
+import com.project.my.dto.response.UserResponse;
+import com.project.my.entity.user.Users;
+import com.project.my.entity.user.query.UsersRepository;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
-import org.eclipse.jdt.core.compiler.InvalidInputException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,13 +24,13 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UsersRepository usersRepository;
-    private final UserRepositoryImpl userRepositoryImpl;
+//    private final UserRepositoryImpl userRepositoryImpl;
 
 /*
 * 회원가입
 * */
 
-    public String userSignUp(UserRegisterRequest request) throws InvalidInputException {
+    public String userSignUp(UserRegisterRequest request)  {
 
         if (usersRepository.findByLoginId(request.loginId()).isPresent()) {
             throw new AlreadyExistElementException("중복된 id 입니다.");
@@ -53,7 +48,7 @@ public class UserService {
     public String userUpdate(UserRegisterRequest request) {
 
         Users findUser = usersRepository.findByLoginId(request.loginId())
-            .orElseThrow(() -> new NotFoundElementException("없는 회원 입니다."));
+            .orElseThrow(() -> new NotFoundElementException("해당 회원을 찾을 수 없습니다."));
 
         Optional.ofNullable(request.password())
             .map(passwordEncoder::encode)
@@ -81,8 +76,9 @@ public class UserService {
      * */
     @Transactional(readOnly = true)
     public Page<UserResponse> userListSearch(SearchDto dto, Pageable pageable) {
-        return userRepositoryImpl.findList(dto, pageable)
-            .map(UserResponse::new);
+        return null;
+//        return userRepositoryImpl.findList(dto, pageable)
+//            .map(UserResponse::new);
     }
 
     /*
@@ -90,19 +86,10 @@ public class UserService {
      * */
     public String delete(List<Long> deleteIds)  {
 
-//        Users findUser = usersRepository.findById(di).orElseThrow(() -> new NotFoundElementException("없는 회원 입니다."));
-
         for (Long di : deleteIds) {
             Users findUser = usersRepository.findById(di).orElseThrow(() -> new NotFoundElementException("없는 회원 입니다."));
             usersRepository.delete(findUser);
         }
-
-//        if (usersRepository.findByLoginId(request.loginId()).isPresent()) {
-//            throw new InvalidInputException("중복된 id 입니다.");
-//        }
-
-
-
 
         return "가입되었습니다.";
     }

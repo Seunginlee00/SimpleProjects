@@ -1,7 +1,8 @@
 package com.project.my.entity.board;
 
-import com.java.project.api.common.entity.BaseEntity;
-import com.java.project.api.dto.board.BoardDto;
+
+import com.project.my.common.entity.BaseEntity;
+import com.project.my.dto.board.BoardDto;
 import jakarta.persistence.*;
 import lombok.*;
 

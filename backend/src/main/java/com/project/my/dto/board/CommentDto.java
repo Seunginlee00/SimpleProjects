@@ -1,8 +1,7 @@
 package com.project.my.dto.board;
 
-import com.java.project.api.entity.board.Board;
-import com.java.project.api.entity.board.Comment;
-
+import com.project.my.entity.board.Board;
+import com.project.my.entity.board.Comment;
 import java.time.LocalDateTime;
 
 public record CommentDto(
@@ -14,7 +13,7 @@ public record CommentDto(
         LocalDateTime modifiedDate
 
 ) {
-    public Comment toEntity(String userName,Board board){
+    public Comment toEntity(String userName, Board board){
         return Comment.builder()
                 .content(content)
                 .userName(userName)

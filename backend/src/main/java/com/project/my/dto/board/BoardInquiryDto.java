@@ -1,7 +1,8 @@
 package com.project.my.dto.board;
 
-import com.java.project.api.entity.board.Board;
-import com.java.project.api.entity.board.Comment;
+
+import com.project.my.entity.board.Board;
+import com.project.my.entity.board.Comment;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDateTime;

@@ -1,6 +1,6 @@
 package com.project.my.config.jwt;
 
-import com.java.project.api.entity.user.Users;
+import com.project.my.entity.user.Users;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

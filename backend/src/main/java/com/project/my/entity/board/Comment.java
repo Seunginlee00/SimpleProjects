@@ -1,7 +1,5 @@
 package com.project.my.entity.board;
 
-import com.java.project.api.common.entity.BaseEntity;
-import com.java.project.api.dto.board.CommentDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -15,7 +13,7 @@ import org.hibernate.annotations.Where;
 @Where(clause = "is_delete = false")
 @SQLDelete(sql = "UPDATE tb_comment SET is_delete = true, modified_date = now() WHERE comment_id = ?")
 @Table(name = "TB_COMMENT")
-public class Comment extends BaseEntity {
+public class Comment extends com.project.my.common.entity.BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
@@ -33,7 +31,7 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "board_id")
     private Board board;
 
-    public void update(CommentDto dto){
+    public void update(com.project.my.dto.board.CommentDto dto){
         if(dto.content() != null)
             this.content = dto.content();
     }

@@ -1,7 +1,8 @@
 package com.project.my.dto.board;
 
-import com.java.project.api.entity.board.BoardConfig;
-import com.java.project.api.entity.enums.BoardType;
+
+import com.project.my.entity.board.BoardConfig;
+import com.project.my.entity.enums.BoardType;
 
 public record BoardConfigDto(
         BoardType boardType,

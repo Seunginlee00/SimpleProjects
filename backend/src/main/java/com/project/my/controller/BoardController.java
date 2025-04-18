@@ -1,4 +1,4 @@
-package com.project.my.controller;//package com.java.project.api.controller;
+package com.project.my.controller;
 //
 //import com.java.project.api.dto.response.SearchDto;
 //import com.java.project.api.dto.board.BoardDto;

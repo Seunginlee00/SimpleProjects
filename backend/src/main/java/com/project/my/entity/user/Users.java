@@ -1,8 +1,8 @@
 package com.project.my.entity.user;
 
-import com.java.project.api.common.entity.BaseEntity;
-import com.java.project.api.dto.login.UserRegisterRequest;
-import com.java.project.api.entity.enums.Role;
+import com.project.my.common.entity.BaseEntity;
+import com.project.my.dto.login.UserRegisterRequest;
+import com.project.my.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 

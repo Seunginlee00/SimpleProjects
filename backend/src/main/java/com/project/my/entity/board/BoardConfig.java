@@ -1,6 +1,6 @@
 package com.project.my.entity.board;
 
-import com.java.project.api.entity.enums.BoardType;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +17,7 @@ public class BoardConfig {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private BoardType boardType; // 게시판 분류
+    private com.project.my.entity.enums.BoardType boardType; // 게시판 분류
 
     private Boolean isViewUse; // 조회수 사용여부
 

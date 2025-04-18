@@ -1,6 +1,7 @@
 package com.project.my.dto.response;
 
-import com.java.project.api.entity.enums.Role;
+
+import com.project.my.entity.enums.Role;
 
 public record SearchDto(
        //날짜

@@ -2,8 +2,8 @@ package com.project.my.config.jwt;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.java.project.api.entity.enums.Role;
-import com.java.project.api.entity.user.Users;
+import com.project.my.entity.enums.Role;
+import com.project.my.entity.user.Users;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

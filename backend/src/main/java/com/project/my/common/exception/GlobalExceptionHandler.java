@@ -4,10 +4,9 @@ import io.swagger.v3.oas.annotations.Hidden;
 import java.nio.file.AccessDeniedException;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -26,7 +25,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
   public static final String TRACE = "trace";
 
-  @Value("${error.printStackTrace}")
+  @Value("${error.printStackTrace:false}")
   private boolean printStackTrace;
 
   @Override
@@ -57,10 +56,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @Hidden
   @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
   protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-    ErrorResponseDto errorResponseDto = new ErrorResponseDto(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Validation error. Check 'errors' field for details.", LocalDateTime.now());
+
+    ErrorResponseDto errorResponseDto = new ErrorResponseDto(
+        HttpStatus.UNPROCESSABLE_ENTITY.value(),
+        "Validation error. Check 'errors' field for details.",
+        LocalDateTime.now()
+    );
+
+    // 유효성 검사 오류를 추가
     for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
       errorResponseDto.addValidationError(fieldError.getField(), fieldError.getDefaultMessage());
     }
+
     return ResponseEntity.unprocessableEntity().body(errorResponseDto);
   }
 

@@ -1,6 +1,6 @@
 package com.project.my.entity.user.query;
 
-import com.java.project.api.entity.user.Users;
+import com.project.my.entity.user.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
