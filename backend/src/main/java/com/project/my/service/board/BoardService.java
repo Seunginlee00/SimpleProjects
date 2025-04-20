@@ -1,6 +1,5 @@
 package com.project.my.service.board;
 
-import com.project.my.common.exception.NotFoundElementException;
 import com.project.my.dto.board.BoardConfigDto;
 import com.project.my.dto.board.BoardDto;
 import com.project.my.dto.board.BoardInquiryDto;
@@ -27,7 +26,6 @@ public class BoardService{
 
     private final BoardConfigRepository configRepository;
     private final BoardRepository boardRepository;
-//    private final BoardRepositoryImpl boardImpl;
     private final CommentRepository commentRepository;
 
     /*

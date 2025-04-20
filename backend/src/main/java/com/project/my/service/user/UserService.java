@@ -1,7 +1,5 @@
 package com.project.my.service.user;
 
-import com.project.my.common.exception.AlreadyExistElementException;
-import com.project.my.common.exception.NotFoundElementException;
 import com.project.my.dto.login.UserRegisterRequest;
 import com.project.my.dto.response.SearchDto;
 import com.project.my.dto.response.UserResponse;
