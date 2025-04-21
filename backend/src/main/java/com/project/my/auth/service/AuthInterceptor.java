@@ -1,8 +1,8 @@
 package com.project.my.auth.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.smarttaekwondo.globepoint.auth.service.dto.JWTException;
-import com.smarttaekwondo.globepoint.config.jwt.JWTUtil;
+import com.project.my.config.jwt.JWTException;
+import com.project.my.config.jwt.JwtProvider;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,7 +19,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 public class AuthInterceptor implements HandlerInterceptor {
 
     private final AuthContext authContext;
-    private final JWTUtil jwtUtil;
+    private final JwtProvider jwtProvider;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
@@ -38,7 +38,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         String token = authorization.split(" ")[1];
 
         try {
-            jwtUtil.isExpired(token);
+            jwtProvider.isExpired(token);
         } catch (ExpiredJwtException e) {
             JWTException jwtException = new JWTException(true, "토큰이 만료 되었습니다.");
             String result = objectMapper.writeValueAsString(jwtException);
@@ -47,7 +47,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             return false;
         }
 
-        String type = jwtUtil.getType(token);
+        String type = jwtProvider.getType(token);
 
         if (!type.equals("access")) {
             JWTException jwtException = new JWTException(true, "Invalid Access Token");
@@ -57,9 +57,9 @@ public class AuthInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        String tokenGetMemberId = jwtUtil.getMemberId(token);
+        String tokenGetMemberId = jwtProvider.getUserId(token);
         Long memberId = Long.valueOf(tokenGetMemberId);
-        authContext.setMemberId(memberId);
+        authContext.setUserId(memberId);
 
         return true;
     }

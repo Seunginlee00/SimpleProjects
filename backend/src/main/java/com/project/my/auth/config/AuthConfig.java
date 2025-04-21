@@ -3,6 +3,9 @@ package com.project.my.auth.config;
 
 import java.util.Arrays;
 import java.util.List;
+
+import com.project.my.auth.service.AuthArgumentResolver;
+import com.project.my.auth.service.AuthInterceptor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;

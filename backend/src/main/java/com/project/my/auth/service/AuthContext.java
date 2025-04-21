@@ -7,13 +7,13 @@ import org.springframework.web.context.annotation.RequestScope;
 @RequestScope
 public class AuthContext {
 
-    private Long memberId;
+    private Long userId;
 
-    public Long memberId() {
-        return memberId;
+    public Long userId() {
+        return userId;
     }
 
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

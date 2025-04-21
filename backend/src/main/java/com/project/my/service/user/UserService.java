@@ -29,68 +29,63 @@ public class UserService {
 * */
 
     public String userSignUp(UserRegisterRequest request)  {
-
-        if (usersRepository.findByLoginId(request.loginId()).isPresent()) {
-            throw new AlreadyExistElementException("중복된 id 입니다.");
-        }
-
         Users user = request.toEntity(passwordEncoder.encode(request.password()));
         usersRepository.save(user);
         return "가입되었습니다.";
     }
 
-
-    /*
-     * 회원 수정
-     * */
-    public String userUpdate(UserRegisterRequest request) {
-
-        Users findUser = usersRepository.findByLoginId(request.loginId())
-            .orElseThrow(() -> new NotFoundElementException("해당 회원을 찾을 수 없습니다."));
-
-        Optional.ofNullable(request.password())
-            .map(passwordEncoder::encode)
-            .ifPresent(newPassword -> findUser.update(request, newPassword));
-
-
-         return "수정 되었습니다.";
-    }
-
-
-    /*
-     * 회원 조회
-     * */
-    @Transactional(readOnly = true)
-    public UserResponse userSearch(UserRegisterRequest request){
-
-        Users findUser = usersRepository.findByLoginId(request.loginId())
-            .orElseThrow(() -> new NotFoundElementException("없는 회원 입니다."));
-        return new UserResponse(findUser);
-    }
-
-
-    /*
-     * 회원 목록 조회
-     * */
-    @Transactional(readOnly = true)
-    public Page<UserResponse> userListSearch(SearchDto dto, Pageable pageable) {
-        return null;
-//        return userRepositoryImpl.findList(dto, pageable)
-//            .map(UserResponse::new);
-    }
-
-    /*
-     * 회원 삭제
-     * */
-    public String delete(List<Long> deleteIds)  {
-
-        for (Long di : deleteIds) {
-            Users findUser = usersRepository.findById(di).orElseThrow(() -> new NotFoundElementException("없는 회원 입니다."));
-            usersRepository.delete(findUser);
-        }
-
-        return "가입되었습니다.";
-    }
+//
+//    /*
+//     * 회원 수정
+//     * */
+//    public String userUpdate(UserRegisterRequest request) {
+//
+//        Users findUser = usersRepository.findByLoginId(request.loginId())
+//            .orElseThrow(() -> new NotFoundElementException("해당 회원을 찾을 수 없습니다."));
+//
+//        Optional.ofNullable(request.password())
+//            .map(passwordEncoder::encode)
+//            .ifPresent(newPassword -> findUser.update(request, newPassword));
+//
+//
+//         return "수정 되었습니다.";
+//    }
+//
+//
+//    /*
+//     * 회원 조회
+//     * */
+//    @Transactional(readOnly = true)
+//    public UserResponse userSearch(UserRegisterRequest request){
+//
+//        Users findUser = usersRepository.findByLoginId(request.loginId())
+//            .orElseThrow(() -> new NotFoundElementException("없는 회원 입니다."));
+//        return new UserResponse(findUser);
+//    }
+//
+//
+//    /*
+//     * 회원 목록 조회
+//     * */
+//    @Transactional(readOnly = true)
+//    public Page<UserResponse> userListSearch(SearchDto dto, Pageable pageable) {
+//        return null;
+////        return userRepositoryImpl.findList(dto, pageable)
+////            .map(UserResponse::new);
+//    }
+//
+//    /*
+//     * 회원 삭제
+//     * */
+//    public String delete(List<Long> deleteIds)  {
+//
+//        for (Long di : deleteIds) {
+//            Users findUser = usersRepository.findById(di).orElseThrow(() -> new NotFoundElementException("없는 회원 입니다."));
+//            usersRepository.delete(findUser);
+//        }
+//
+//        return "가입되었습니다.";
+//    }
 
 
 

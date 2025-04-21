@@ -45,6 +45,11 @@ public class JwtProvider {
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload()
                 .getExpiration().before(new Date());
     }
+    /* access 인지 refresh 인지 구분*/
+    public String getType(String token) {
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload()
+                .get("type", String.class);
+    }
 
     /* 토큰 생성 */
     public String createJwt(String type, String userId, String role, Long expiredMs) {

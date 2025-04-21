@@ -4,7 +4,7 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
-import com.smarttaekwondo.globepoint.common.exception.BaseExceptionType;
+import com.project.my.common.exception.BaseExceptionType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 

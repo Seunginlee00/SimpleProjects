@@ -1,6 +1,5 @@
 package com.project.my.common.exception;
 
-import com.smarttaekwondo.globepoint.common.dto.ApiResult;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +18,7 @@ public class ApiExceptionAdvice {
             .body(new ApiResult("error", "api", apiExceptionEntity));
     }
 
+    // 400 에러
     @ExceptionHandler({RuntimeException.class})
     public ResponseEntity<ApiResult> exceptionHandler(HttpServletRequest request,
         final RuntimeException e) {
@@ -32,16 +32,8 @@ public class ApiExceptionAdvice {
             .body(new ApiResult("error", "runtime", apiExceptionEntity));
     }
 
-//    @ExceptionHandler({NoSuchElementException.class})
-//    public ResponseEntity<ApiResult> exceptionHandler(HttpServletRequest request, Exception e) {
-//
-//        ApiExceptionEntity apiExceptionEntity = new ApiExceptionEntity(e);
-//
-//        return ResponseEntity
-//            .status(ExceptionData.NOT_FOUND_MEMBER.getStatus())
-//            .body(new ApiResult("error", "ddd", apiExceptionEntity));
-//    }
 
+    // 500 에러
     @ExceptionHandler({Exception.class})
     public ResponseEntity<ApiResult> exceptionHandler(HttpServletRequest request, Exception e) {
 

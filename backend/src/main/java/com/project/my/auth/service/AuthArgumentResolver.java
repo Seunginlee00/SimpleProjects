@@ -1,9 +1,8 @@
 package com.project.my.auth.service;
 
-import static com.smarttaekwondo.globepoint.auth.exception.AuthExceptionType.UNAUTHORIZED_REQUEST;
+import static com.project.my.auth.exception.AuthExceptionType.UNAUTHORIZED_REQUEST;
 
 import com.project.my.auth.exception.AuthException;
-import com.smarttaekwondo.globepoint.auth.exception.AuthException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
@@ -33,10 +32,10 @@ public class AuthArgumentResolver implements HandlerMethodArgumentResolver {
         NativeWebRequest webRequest,
         WebDataBinderFactory binderFactory
     ) {
-        if (authContext.memberId() == null) {
+        if (authContext.userId() == null) {
             throw new AuthException(UNAUTHORIZED_REQUEST);
         }
-        return authContext.memberId();
+        return authContext.userId();
     }
 
 }

@@ -42,11 +42,11 @@ public class JWTController {
             return new ResponseEntity<>("refresh is null", HttpStatus.BAD_REQUEST);
         }
 
-//        String type = jwtProvider.getRole(refresh);
-//
-//        if (!type.equals(REFRESH_TYPE)) {
-//            return new ResponseEntity<>("invalid refresh token", HttpStatus.BAD_REQUEST);
-//        }
+        String type = jwtProvider.getRole(refresh);
+
+        if (!type.equals(REFRESH_TYPE)) {
+            return new ResponseEntity<>("invalid refresh token", HttpStatus.BAD_REQUEST);
+        }
 
         String username = jwtProvider.getUserId(refresh);
         String role = jwtProvider.getRole(refresh);
