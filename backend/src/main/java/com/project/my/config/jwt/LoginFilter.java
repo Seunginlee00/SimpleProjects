@@ -1,5 +1,6 @@
 package com.project.my.config.jwt;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.my.dto.login.LoginRequest;
 import com.project.my.dto.response.JwtResponse;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -30,8 +31,22 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     public Authentication attemptAuthentication(
             HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String username = obtainUsername(request);
-        String password = obtainPassword(request);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+      LoginRequest loginRequest = null;
+      try {
+        loginRequest = objectMapper.readValue(request.getInputStream(), LoginRequest.class);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
+
+      String username = loginRequest.username();
+      String password = loginRequest.password();
+
+        log.debug("username: {}", username);
+        log.debug("password: {}", password);
+
+
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                 username, password, null);
         return authenticationManager.authenticate(token);
@@ -40,9 +55,11 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request,
                                               HttpServletResponse response, AuthenticationException failed)
-            throws IOException, ServletException {
+            throws IOException{
 
         response.setStatus(401);
+
+        log.debug("들어옴");
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -62,6 +79,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response, FilterChain chain, Authentication authentication)
             throws IOException {
+
 
         // role 뽑기
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();

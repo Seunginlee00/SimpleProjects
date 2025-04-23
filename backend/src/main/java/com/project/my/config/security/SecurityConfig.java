@@ -42,12 +42,6 @@ public class SecurityConfig {
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        log.debug("들어옴");
-
-
-        LoginFilter loginFilter = new LoginFilter(authenticationManager(authenticationConfiguration), jwtProvider);
-        loginFilter.setFilterProcessesUrl("/v1/user/login"); // 로그인 처리할 URL 명확히 지정
-
         http
                 .csrf(csrf -> csrf.disable())
 
@@ -60,7 +54,7 @@ public class SecurityConfig {
 
                 .httpBasic(auth -> auth.disable())
                 .addFilterAt(
-                        loginFilter,
+                        new LoginFilter(authenticationManager(authenticationConfiguration), jwtProvider),
                         UsernamePasswordAuthenticationFilter.class
                 )
                 .sessionManagement(sessionManagement ->

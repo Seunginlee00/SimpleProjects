@@ -23,9 +23,8 @@ public class AuthConfig implements WebMvcConfigurer {
 
 
     // 인터셉터를 태울 곳
-    private final List<String> addEndPoint = Arrays.asList(
-        "/**"
-    );
+    private final List<String> addEndPoint = List.of("/**");
+
 
     // 인터셉터를 안태울 곳
     private final List<String> excludePoint = Arrays.asList(
@@ -34,7 +33,8 @@ public class AuthConfig implements WebMvcConfigurer {
         "/v3/api-docs",
         "/v3/api-docs/**",
         "/login",
-        "/reissue"
+        "/reissue",
+        "/v1/user/join"
     );
 
     @Override

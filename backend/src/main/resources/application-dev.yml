@@ -27,10 +27,10 @@ spring:
 #로그
 logging:
   level:
-    root: DEBUG  # ← 이 부분 추가
+    root: INFO  # ← 이 부분 추가
     org.hibernate.SQL: DEBUG
     org.hibernate.type: trace
-    com.java.project : DEBUG
+    com.project.my : DEBUG
 
 #swagger api 문서
 springdoc:

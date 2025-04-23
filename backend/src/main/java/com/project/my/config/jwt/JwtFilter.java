@@ -1,7 +1,5 @@
 package com.project.my.config.jwt;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.project.my.entity.enums.Role;
 import com.project.my.entity.user.Users;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -27,16 +25,8 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
+
         String path = request.getRequestURI();
-
-        log.info("들어옴");
-        log.debug("들어옴");
-
-        // 여기에 허용할 경로 추가
-        if (path.equals("/v1/user/join") || path.equals("/v1/user/login")) {
-            filterChain.doFilter(request, response); // 인증 없이 통과
-            return;
-        }
 
         String authorization = request.getHeader("Authorization");
 
