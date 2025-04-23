@@ -32,9 +32,9 @@ public class UserServiceTest {
     String result = userService.userSignUp(request);
 
 //    User user = userRepository.save(new
-////    // then
-////    assertEquals("가입되었습니다.", result);
-//  }
+//    // then
+//    assertEquals("가입되었습니다.", result);
+  }
 //
 //
 ////  @Test
