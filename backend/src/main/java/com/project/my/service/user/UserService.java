@@ -1,5 +1,6 @@
 package com.project.my.service.user;
 
+import com.project.my.common.exception.ApiException;
 import com.project.my.dto.login.UserRegisterRequest;
 import com.project.my.dto.response.SearchDto;
 import com.project.my.dto.response.UserResponse;
@@ -7,6 +8,8 @@ import com.project.my.entity.user.Users;
 import com.project.my.entity.user.query.UsersRepository;
 import java.util.List;
 import java.util.Optional;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -22,6 +25,7 @@ public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UsersRepository usersRepository;
+
 //    private final UserRepositoryImpl userRepositoryImpl;
 
 /*
@@ -34,22 +38,22 @@ public class UserService {
         return "가입되었습니다.";
     }
 
-//
-//    /*
-//     * 회원 수정
-//     * */
-//    public String userUpdate(UserRegisterRequest request) {
-//
-//        Users findUser = usersRepository.findByLoginId(request.loginId())
-//            .orElseThrow(() -> new NotFoundElementException("해당 회원을 찾을 수 없습니다."));
-//
-//        Optional.ofNullable(request.password())
-//            .map(passwordEncoder::encode)
-//            .ifPresent(newPassword -> findUser.update(request, newPassword));
-//
-//
-//         return "수정 되었습니다.";
-//    }
+
+    /*
+     * 회원 수정
+     * */
+    public String userUpdate(UserRegisterRequest request) {
+
+        Users findUser = usersRepository.findByLoginId(request.loginId())
+                .orElse(()-> new ApiException(E))
+
+        Optional.ofNullable(request.password())
+            .map(passwordEncoder::encode)
+            .ifPresent(newPassword -> findUser.update(request, newPassword));
+
+
+         return "수정 되었습니다.";
+    }
 //
 //
 //    /*

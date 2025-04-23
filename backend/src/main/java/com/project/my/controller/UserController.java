@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +36,8 @@ https://ng-log.tistory.com/entry/SpringBoot-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80
     }
 
 
-//    /* 회원 수정 */
-//
+    /* 회원 수정 */
+
 //    @PatchMapping("/update")
 //    public ResponseEntity<?> userUpdate(@RequestBody UserRegisterRequest request) {
 //        return ResponseEntity.ok(userService.userUpdate(request));

@@ -3,7 +3,8 @@ spring:
     import:
       - classpath:/application-dev.yml
       - classpath:/application-prod.yml
+      - classpath:/application-log.yml
   profiles:
     group:
-      logging: prod, log
+      logging: log, dev
 

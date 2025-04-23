@@ -32,6 +32,7 @@ public class Users extends BaseEntity {
 
     private boolean deleted = false;
 
+
     public void update(UserRegisterRequest request, String password) {
         this.email = request.email();
         this.nickname = request.nickname();
