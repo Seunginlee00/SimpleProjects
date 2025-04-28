@@ -32,25 +32,25 @@ public class BoardService{
 //    *  글쓰기
 //    * */
 //
-//    public void boardInsert(BoardDto dto) {
-//        Board board = null;
-//        BoardConfig config = configRepository.findByBoardType(dto.boardType());
-//
-//        if(config == null){
-//            // 해당 분류가 없다면
-//            BoardConfigDto cDto = new BoardConfigDto(dto.boardType(),true,100);
-//
-//            config = configRepository.save(cDto.toEntity());
+    public void boardInsert(Long userId, BoardDto dto) {
+        Board board = null;
+        BoardConfig config = configRepository.findByBoardType(dto.boardType());
+
+        if(config == null){
+            // 해당 분류가 없다면
+            BoardConfigDto cDto = new BoardConfigDto(dto.boardType(),true,100);
+
+            config = configRepository.save(cDto.toEntity());
 //            board = dto.toEntity("jwt추출",config);
-//
-//        }else {
-//            // 있다면
+
+        }else {
+            // 있다면
 //            board = dto.toEntity("jwt추출",config);
-//        }
-//
-//        boardRepository.save(board);
-//    }
-//
+        }
+
+        boardRepository.save(board);
+    }
+
 //    /*
 //    * 글수정
 //    * */

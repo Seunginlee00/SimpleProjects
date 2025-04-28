@@ -2,9 +2,13 @@ package com.project.my.entity.user;
 
 import com.project.my.common.entity.BaseEntity;
 import com.project.my.dto.login.UserRegisterRequest;
+import com.project.my.entity.board.Board;
 import com.project.my.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "TB_USERS")
 @Getter
@@ -32,6 +36,8 @@ public class Users extends BaseEntity {
 
     private boolean deleted = false;
 
+    @OneToMany(mappedBy = "users")
+    List<Board> boardList = new ArrayList<>();
 
     public void update(UserRegisterRequest request, String password) {
         this.email = request.email();

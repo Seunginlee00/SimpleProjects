@@ -37,7 +37,7 @@ public record BoardInquiryDto(
                  board.getCreatedDate(),
                 Optional.ofNullable(board.getModifiedDate()).orElse(LocalDateTime.MIN),
                 Optional.ofNullable(board.getContent()).orElse("none"),
-                Optional.ofNullable(board.getUserName()).orElse("none"),
+                Optional.ofNullable(board.getUsers().getNickname()).orElse("none"),
                 board.getViews(),board.getIsTopExpo(),board.getAnswerType(),
                 -1L,"none",LocalDateTime.MIN,LocalDateTime.MIN);
     }
@@ -50,7 +50,7 @@ public record BoardInquiryDto(
                 board.getCreatedDate(),
                 Optional.ofNullable(board.getModifiedDate()).orElse(LocalDateTime.MIN),
                 Optional.ofNullable(board.getContent()).orElse("none"),
-                Optional.ofNullable(board.getUserName()).orElse("none"),
+                Optional.ofNullable(board.getUsers().getNickname()).orElse("none"),
                 board.getViews(),board.getIsTopExpo(),board.getAnswerType(),
                 comment.getId(),
                 Optional.ofNullable(comment.getContent()).orElse("none"),

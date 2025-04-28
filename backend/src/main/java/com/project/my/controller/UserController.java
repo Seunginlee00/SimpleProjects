@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 @Tag(name = "회원 API")
 @RequestMapping("/v1/user")
 @RequiredArgsConstructor
@@ -38,19 +41,19 @@ https://ng-log.tistory.com/entry/SpringBoot-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80
 
     /* 회원 수정 */
 
-//    @PatchMapping("/update")
-//    public ResponseEntity<?> userUpdate(@RequestBody UserRegisterRequest request) {
-//        return ResponseEntity.ok(userService.userUpdate(request));
-//    }
-//
-//    /* 회원 상세 조회 */
-//
-//    @GetMapping("/detail")
-//    public ResponseEntity<?> userDetail(@RequestBody UserRegisterRequest request)
-//        throws InvalidInputException {
-//        return ResponseEntity.ok(userService.userSearch(request));
-//    }
-//
+    @PatchMapping("/update")
+    public ResponseEntity<?> userUpdate(@RequestBody UserRegisterRequest request) {
+        return ResponseEntity.ok(userService.userUpdate(request));
+    }
+
+    /* 회원 상세 조회 */
+
+    @GetMapping("/detail")
+    public ResponseEntity<?> userDetail(@RequestBody UserRegisterRequest request)
+    {
+        return ResponseEntity.ok(userService.userSearch(request));
+    }
+
 //    /* 회원 전체 목록 조회 */
 //
 //    @GetMapping("/list")
@@ -60,15 +63,15 @@ https://ng-log.tistory.com/entry/SpringBoot-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80
 //    }
 
 
-//    /* 회원 삭제
-//    * 번호 만 입력시 1명 리스트로 입력시 여러명
-//    *  */
-//
-//    @PatchMapping("/del")
-//    public ResponseEntity<?> userDelete(@RequestBody @Valid UserRegisterRequest request)
-//        throws InvalidInputException {
-//        return ResponseEntity.ok(userService.signUp(request));
-//    }
+    /* 회원 삭제
+    * 번호 만 입력시 1명 리스트로 입력시 여러명
+    *  */
+
+    @PatchMapping("/delete")
+    public ResponseEntity<?> userDelete(@RequestBody List<Long> delIds)
+    {
+        return ResponseEntity.ok(userService.delete(delIds));
+    }
 
 
 }

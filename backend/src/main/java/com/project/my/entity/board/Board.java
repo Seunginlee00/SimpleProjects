@@ -3,6 +3,7 @@ package com.project.my.entity.board;
 
 import com.project.my.common.entity.BaseEntity;
 import com.project.my.dto.board.BoardDto;
+import com.project.my.entity.user.Users;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,9 +32,6 @@ public class Board extends BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String content; // 내용
 
-    @Column(length = 100)
-    private String userName; // 회원명
-
     private int views; // 조회수
 
     private Boolean isDelete;  // 삭제 여부
@@ -43,6 +41,10 @@ public class Board extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "board_config_id")
     private BoardConfig boardConfig;
+
+    @ManyToOne
+    @JoinColumn(name ="user_id")
+    private Users users;
 
 
     public void update(BoardDto dto){

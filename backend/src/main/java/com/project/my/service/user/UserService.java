@@ -67,16 +67,16 @@ public class UserService {
     }
 
 
-//    /*
-//     * 회원 목록 조회
-//     * */
-//    @Transactional(readOnly = true)
-//    public Page<UserResponse> userListSearch(SearchDto dto, Pageable pageable) {
-//        return null;
-////        return userRepositoryImpl.findList(dto, pageable)
-////            .map(UserResponse::new);
-//    }
-//
+    /*
+     * 회원 목록 조회
+     * */
+    @Transactional(readOnly = true)
+    public Page<UserResponse> userListSearch(SearchDto dto, Pageable pageable) {
+        return null;
+//        return userRepositoryImpl.findList(dto, pageable)
+//            .map(UserResponse::new);
+    }
+
     /*
      * 회원 삭제
      * */
