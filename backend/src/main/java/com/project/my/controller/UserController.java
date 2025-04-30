@@ -2,11 +2,14 @@ package com.project.my.controller;
 
 
 import com.project.my.dto.login.UserRegisterRequest;
+import com.project.my.dto.response.SearchDto;
 import com.project.my.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.awt.print.Pageable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -54,11 +57,10 @@ https://ng-log.tistory.com/entry/SpringBoot-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80
         return ResponseEntity.ok(userService.userSearch(request));
     }
 
-//    /* 회원 전체 목록 조회 */
-//
+    /* 회원 전체 목록 조회 */
+
 //    @GetMapping("/list")
-//    public ResponseEntity<?> userList(SearchDto dto, @PageableDefault(size = 10) Pageable pageable)
-//        throws InvalidInputException {
+//    public ResponseEntity<?> userList(SearchDto dto, @PageableDefault(size = 10) Pageable pageable) {
 //        return ResponseEntity.ok(userService.userListSearch(dto,pageable));
 //    }
 

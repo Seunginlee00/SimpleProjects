@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 @Slf4j
-//@ActiveProfiles("dev")
+@ActiveProfiles("dev")
 @SpringBootTest(classes = MainApplication.class)
 class MainApplicationTests {
 

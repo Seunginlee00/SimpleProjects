@@ -34,6 +34,7 @@ public class Users extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role; // 권한 일반/관리자
 
+    @Builder.Default
     private boolean deleted = false;
 
     @OneToMany(mappedBy = "users")
