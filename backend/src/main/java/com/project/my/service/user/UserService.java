@@ -6,6 +6,7 @@ import com.project.my.dto.login.UserRegisterRequest;
 import com.project.my.dto.response.SearchDto;
 import com.project.my.dto.response.UserResponse;
 import com.project.my.entity.user.Users;
+import com.project.my.entity.user.query.UserRepositoryImpl;
 import com.project.my.entity.user.query.UsersRepository;
 import java.util.List;
 import java.util.Optional;
@@ -22,18 +23,25 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class UserService {
 
     private final PasswordEncoder passwordEncoder;
     private final UsersRepository usersRepository;
 
-//    private final UserRepositoryImpl userRepositoryImpl;
+    private final UserRepositoryImpl userRepositoryImpl;
 
 /*
 * 회원가입
 * */
 
     public String userSignUp(UserRegisterRequest request)  {
+
+        log.debug("서비스단 들어옴");
+        if(usersRepository.existsByLoginId(request.loginId())){
+            throw new ApiException(ExceptionData.EXISTS_USER);
+        }
+
         Users user = request.toEntity(passwordEncoder.encode(request.password()));
         usersRepository.save(user);
         return "가입되었습니다.";
@@ -45,7 +53,7 @@ public class UserService {
      * */
     public String userUpdate(UserRegisterRequest request) {
 
-        Users findUser = usersRepository.findByLoginId(request.loginId())
+        Users findUser = usersRepository.findById(request.userId())
                 .orElseThrow(()-> new ApiException(ExceptionData.NOT_FOUND_USER));
 
         Optional.ofNullable(request.password())
@@ -72,9 +80,8 @@ public class UserService {
      * */
     @Transactional(readOnly = true)
     public Page<UserResponse> userListSearch(SearchDto dto, Pageable pageable) {
-        return null;
-//        return userRepositoryImpl.findList(dto, pageable)
-//            .map(UserResponse::new);
+        return userRepositoryImpl.findList(dto, pageable)
+            .map(UserResponse::new);
     }
 
     /*
