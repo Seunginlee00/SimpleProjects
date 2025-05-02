@@ -23,13 +23,13 @@ import org.springframework.stereotype.Repository;
 public class UserRepositoryImpl {
 
   private final JPAQueryFactory query;
-  private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddHH:mm:ss");
+  private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
   private QUsers u = new QUsers("user");
 
   public Page<Users> findList(SearchDto dto, Pageable pageable){
     List<Users> usersLis = query
         .selectFrom(u)
-        .where(startDateGoe(dto),endDateLoe(dto), roleEq(dto),keywordEq(dto))
+        .where(startDateGoe(dto),endDateLoe(dto), roleEq(dto),keywordEq(dto),deleteNo())
         .orderBy(u.id.desc())
         .offset(pageable.getOffset())
         .limit(pageable.getPageSize())
@@ -37,21 +37,34 @@ public class UserRepositoryImpl {
 
     Long total = query
         .select(u.count()).from(u)
-        .where(startDateGoe(dto),endDateLoe(dto), roleEq(dto),keywordEq(dto))
+        .where(startDateGoe(dto),endDateLoe(dto), roleEq(dto),keywordEq(dto),deleteNo())
         .fetchOne();
 
     return new PageImpl<>(usersLis,pageable,total);
   }
 
+  // 삭제 된거 제외
+  private Predicate deleteNo() {
+    return u.isDelete.eq(Boolean.FALSE);
+  }
 
   //기간별
   private BooleanExpression startDateGoe(SearchDto dto) {
-      return dto.startDate() == null ? null : u.createdDate.goe(
-          LocalDateTime.parse(dto.startDate(), formatter));
+    if (dto.startDate() == null) {
+      return null;
+    }
+    // 날짜만 주어졌을 경우, 시간을 기본값 00:00:00으로 설정
+    String startDate = dto.startDate() + "T00:00:00";
+    return u.createdDate.goe(LocalDateTime.parse(startDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
   }
 
   private BooleanExpression endDateLoe(SearchDto dto) {
-      return dto.endDate() == null ? null : u.createdDate.loe(LocalDateTime.parse(dto.endDate(), formatter));
+    if (dto.endDate() == null) {
+      return null;
+    }
+    // 날짜만 주어졌을 경우, 시간을 기본값 23:59:59으로 설정
+    String endDate = dto.endDate() + "T23:59:59";
+    return u.createdDate.loe(LocalDateTime.parse(endDate, DateTimeFormatter.ISO_LOCAL_DATE_TIME));
   }
 
   // 권한별 조회

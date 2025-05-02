@@ -1,14 +1,16 @@
 package com.project.my.controller;
 
 
+import com.project.my.auth.service.Auth;
 import com.project.my.dto.login.UserRegisterRequest;
 import com.project.my.dto.response.SearchDto;
 import com.project.my.service.user.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import java.awt.print.Pageable;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @Tag(name = "회원 API")
 @RequestMapping("/v1/user")
@@ -45,24 +45,25 @@ https://ng-log.tistory.com/entry/SpringBoot-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80
     /* 회원 수정 */
 
     @PatchMapping("/update")
-    public ResponseEntity<?> userUpdate(@RequestBody UserRegisterRequest request) {
-        return ResponseEntity.ok(userService.userUpdate(request));
+    public ResponseEntity<?> userUpdate(@Auth Long userId, @RequestBody UserRegisterRequest request) {
+        return ResponseEntity.ok(userService.userUpdate(userId,request));
     }
 
     /* 회원 상세 조회 */
 
     @GetMapping("/detail")
-    public ResponseEntity<?> userDetail(@RequestBody UserRegisterRequest request)
+    public ResponseEntity<?> userDetail(@Auth Long userId, @RequestBody UserRegisterRequest request)
     {
+        log.debug("userId: {}",userId);
         return ResponseEntity.ok(userService.userSearch(request));
     }
 
     /* 회원 전체 목록 조회 */
 
-//    @GetMapping("/list")
-//    public ResponseEntity<?> userList(SearchDto dto, @PageableDefault(size = 10) Pageable pageable) {
-//        return ResponseEntity.ok(userService.userListSearch(dto,pageable));
-//    }
+    @GetMapping("/list")
+    public ResponseEntity<?> userList(SearchDto dto, @PageableDefault(size = 10) Pageable pageable) {
+        return ResponseEntity.ok(userService.userListSearch(dto,pageable));
+    }
 
 
     /* 회원 삭제

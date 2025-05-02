@@ -51,9 +51,9 @@ public class UserService {
     /*
      * 회원 수정
      * */
-    public String userUpdate(UserRegisterRequest request) {
+    public String userUpdate(Long userId, UserRegisterRequest request) {
 
-        Users findUser = usersRepository.findById(request.userId())
+        Users findUser = usersRepository.findById(userId)
                 .orElseThrow(()-> new ApiException(ExceptionData.NOT_FOUND_USER));
 
         Optional.ofNullable(request.password())

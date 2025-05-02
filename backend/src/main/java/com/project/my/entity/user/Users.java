@@ -9,6 +9,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.SQLDelete;
 
 @Table(name = "TB_USERS")
 @Getter
@@ -16,6 +17,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SQLDelete(sql = "UPDATE tb_users SET is_delete = true, modified_date = now()  WHERE users_id = ?")
 public class Users extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,11 +36,12 @@ public class Users extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role; // 권한 일반/관리자
 
-    @Builder.Default
-    private boolean deleted = false;
+    @Column(name = "is_delete", nullable = false, columnDefinition = "boolean default false")
+    private boolean isDelete = false;
 
     @OneToMany(mappedBy = "users")
     List<Board> boardList = new ArrayList<>();
+
 
     public void update(UserRegisterRequest request, String password) {
         this.email = request.email();

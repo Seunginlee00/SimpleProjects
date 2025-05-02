@@ -27,11 +27,11 @@ public class QUsers extends EntityPathBase<Users> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
 
-    public final BooleanPath deleted = createBoolean("deleted");
-
     public final StringPath email = createString("email");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
+
+    public final BooleanPath isDelete = createBoolean("isDelete");
 
     public final StringPath loginId = createString("loginId");
 
