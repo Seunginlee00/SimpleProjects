@@ -1,5 +1,6 @@
 package com.project.my.service.board;
 
+import com.project.my.auth.service.Auth;
 import com.project.my.dto.board.BoardConfigDto;
 import com.project.my.dto.board.BoardDto;
 import com.project.my.dto.board.BoardInquiryDto;
@@ -32,7 +33,7 @@ public class BoardService{
 //    *  글쓰기
 //    * */
 //
-    public void boardInsert(Long userId, BoardDto dto) {
+    public void boardInsert(@Auth Long userId, BoardDto dto) {
         Board board = null;
         BoardConfig config = configRepository.findByBoardType(dto.boardType());
 
