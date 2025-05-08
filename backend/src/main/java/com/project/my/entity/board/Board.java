@@ -54,6 +54,8 @@ public class Board extends BaseEntity {
             this.subject = dto.subject();
         if(dto.content() != null)
             this.content = dto.content();
+        if(dto.isTopExpo() != null)
+            this.isTopExpo = dto.isTopExpo();
     }
 
 

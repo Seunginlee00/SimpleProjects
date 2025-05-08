@@ -21,7 +21,11 @@ public enum ExceptionData {
     // Custom Exception
     SECURITY_EXCEPTION(HttpStatus.UNAUTHORIZED, "CE0001", "인가받지 않은 회원입니다."),
     NOT_FOUND_USER(HttpStatus.NOT_FOUND, "CE0002", "회원을 조회할 수 없습니다."),
-    EXISTS_USER(HttpStatus.NOT_FOUND, "CE0003", "이미 존재하는 아이디 입니다."),
+    EXISTS_USER(HttpStatus.BAD_REQUEST, "CE0003", "이미 존재하는 아이디 입니다."),
+
+    // 게시판 관련
+    NOT_FOUND_BOARD(HttpStatus.NOT_FOUND, "CE0004", "해당 게시글을 찾을 수 없습니다." )
+
     ;
 
 

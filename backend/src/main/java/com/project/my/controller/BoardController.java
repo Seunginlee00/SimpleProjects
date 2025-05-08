@@ -1,33 +1,31 @@
 package com.project.my.controller;
-//
-//import com.java.project.api.dto.response.SearchDto;
-//import com.java.project.api.dto.board.BoardDto;
-//import com.java.project.api.dto.board.CommentDto;
-//import com.java.project.api.service.board.BoardService;
-//import io.swagger.v3.oas.annotations.Operation;
-//import io.swagger.v3.oas.annotations.Parameter;
-//import io.swagger.v3.oas.annotations.tags.Tag;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.data.domain.Pageable;
-//import org.springframework.data.domain.Sort;
-//import org.springframework.data.web.PageableDefault;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//@Tag(name = "게시판관리 API")
-//@RestController
-//@RequestMapping("/v1/board")
-//@RequiredArgsConstructor
-//public class BoardController {
-//    private final BoardService boardService;
-//
-//    @Operation(summary = "게시판 입력 하기")
-//    @PostMapping
-//    public ResponseEntity<String> boardInsert(@RequestBody BoardDto dto) {
-//        boardService.boardInsert(dto);
-//        return ResponseEntity.ok().body("ok");
-//    }
-//
+
+import com.project.my.auth.service.Auth;
+import com.project.my.dto.board.BoardDto;
+import com.project.my.service.board.BoardService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@Tag(name = "게시판관리 API")
+@RestController
+@RequestMapping("/v1/board")
+@RequiredArgsConstructor
+public class BoardController {
+    private final BoardService boardService;
+
+    @Operation(summary = "게시판 입력 하기")
+    @PostMapping
+    public ResponseEntity<String> boardInsert(@Auth Long userId, @RequestBody BoardDto dto) {
+        boardService.boardInsert(userId, dto);
+        return ResponseEntity.ok().body("ok");
+    }
+
 //    @Operation(summary = "게시판 수정 하기")
 //    @PatchMapping
 //    public ResponseEntity<String> boardUpdate(@RequestBody BoardDto dto) {
@@ -79,5 +77,5 @@ package com.project.my.controller;
 //        boardService.commentDelete(commentId);
 //        return ResponseEntity.ok().body("ok");
 //    }
-//
-//}
+
+}
