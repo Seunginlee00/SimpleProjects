@@ -23,26 +23,33 @@ public class BoardRepositoryImpl {
     private QBoard board = new QBoard("board");
     private QBoardConfig config = new QBoardConfig("config");
 
-    public Page<BoardDto> boardList(SearchDto dto, Pageable pageable){
+    public Page<Board> boardList(SearchDto dto, Pageable pageable){
 
-        List<Board> fetch =
+        List<Board> boardList =
                 query.select(board)
                 .from(board)
-                .where(deleteNo(),keywordDto(dto))
+                .where(deleteNo(),keywordDto(dto), boardType(dto))
                 .orderBy(board.id.desc())
                 .fetch();
 
-        List<BoardDto> fetchDto = fetch.stream()
-                .map(b -> new BoardDto(b))
-                .toList();
-        long size = fetch.size();
+        Long total = query.
+                select(board.count())
+                .from(board)
+                .where(deleteNo(),keywordDto(dto), boardType(dto))
+                .orderBy(board.id.desc())
+                .fetchOne();
 
-        return new PageImpl<>(fetchDto, pageable,size);
+        return new PageImpl<>(boardList, pageable, total);
     }
 
     // deleteNo
     private Predicate deleteNo(){
         return board.isDelete.eq(false);
+    }
+
+    // 게시판 종류
+    private Predicate boardType(SearchDto dto){
+        return dto.boardType() == null ? null : board.boardConfig.boardType.eq(dto.boardType());
     }
 
     // 키워드
@@ -55,7 +62,7 @@ public class BoardRepositoryImpl {
                 qK = board.content.contains(dto.searchValue());
             }else if (dto.searchType().equals("userName")){
                 // 사용자
-//                qK = board.userName.contains(dto.searchValue());
+                qK = board.users.nickname.contains(dto.searchValue());
             }else {
                 // 기본값 (제목)
                 qK = board.subject.contains(dto.searchValue());

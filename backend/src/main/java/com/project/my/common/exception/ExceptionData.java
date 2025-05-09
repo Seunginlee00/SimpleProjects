@@ -24,8 +24,8 @@ public enum ExceptionData {
     EXISTS_USER(HttpStatus.BAD_REQUEST, "CE0003", "이미 존재하는 아이디 입니다."),
 
     // 게시판 관련
-    NOT_FOUND_BOARD(HttpStatus.NOT_FOUND, "CE0004", "해당 게시글을 찾을 수 없습니다." )
-
+    NOT_FOUND_BOARD(HttpStatus.NOT_FOUND, "CE0004", "해당 게시글을 찾을 수 없습니다." ),
+    NOT_FOUND_BOARD_CONFIG(HttpStatus.NOT_FOUND, "CE0005", "해당 게시글 설정을 찾을 수 없습니다." )
     ;
 
 

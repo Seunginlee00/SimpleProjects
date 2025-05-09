@@ -7,7 +7,7 @@ import com.project.my.entity.enums.BoardType;
 public record BoardConfigDto(
         BoardType boardType,
         Boolean isViewUse,
-        int topExpoCount
+        Integer topExpoCount
 ) {
     public BoardConfig toEntity(){
         return BoardConfig.builder()

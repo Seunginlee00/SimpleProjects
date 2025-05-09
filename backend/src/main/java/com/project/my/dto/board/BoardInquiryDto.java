@@ -30,8 +30,9 @@ public record BoardInquiryDto(
 
 ) {
     // 댓글이 없는 경우
-    public static BoardInquiryDto dto(Board board){
-        return new BoardInquiryDto(board.getId(),
+    public BoardInquiryDto(Board board){
+        this(
+                board.getId(),
                 Optional.ofNullable(board.getClassify()).orElse("none"),
                 Optional.ofNullable(board.getSubject()).orElse("none"),
                  board.getCreatedDate(),
@@ -39,12 +40,14 @@ public record BoardInquiryDto(
                 Optional.ofNullable(board.getContent()).orElse("none"),
                 Optional.ofNullable(board.getUsers().getNickname()).orElse("none"),
                 board.getViews(),board.getIsTopExpo(),board.getAnswerType(),
-                -1L,"none",LocalDateTime.MIN,LocalDateTime.MIN);
+                -1L,"none",LocalDateTime.MIN,LocalDateTime.MIN
+        );
     }
 
     // 댓글이 있는 경우
-    public static BoardInquiryDto dto(Board board, Comment comment){
-        return new BoardInquiryDto(board.getId(),
+    public BoardInquiryDto(Board board, Comment comment){
+        this(
+                board.getId(),
                 Optional.ofNullable(board.getClassify()).orElse("none"),
                 Optional.ofNullable(board.getSubject()).orElse("none"),
                 board.getCreatedDate(),

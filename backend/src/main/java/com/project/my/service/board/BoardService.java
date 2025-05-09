@@ -33,11 +33,21 @@ public class BoardService{
     private final CommentRepository commentRepository;
     private final UsersRepository usersRepository;
     private final BoardRepositoryImpl boardRepoImpl;
+    private final BoardConfigRepository boardConfigRepository;
 
     /*
     * 게시판 설정 변경
     * */
 
+    public String boardConfigChange(BoardConfigDto configDto){
+        BoardConfig config = boardConfigRepository.findByBoardType(configDto.boardType())
+                .orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_BOARD_CONFIG));
+
+        config.update(configDto);
+
+        return "수정 되었습니다.";
+
+    }
 
 
 
@@ -45,9 +55,11 @@ public class BoardService{
     *  글쓰기
     * */
 
-    public void boardInsert(Long userId, BoardDto dto) {
+    public Board boardInsert(Long userId, BoardDto dto) {
         Board board = null;
-        BoardConfig config = configRepository.findByBoardType(dto.boardType());
+        BoardConfig config = configRepository.findByBoardType(dto.boardType())
+                .orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_BOARD_CONFIG));
+
         Users users = usersRepository.getReferenceById(userId);
 
         if(config == null){
@@ -64,7 +76,7 @@ public class BoardService{
             board = dto.toEntity(users,config);
         }
 
-        boardRepository.save(board);
+        return boardRepository.save(board);
     }
 
     /*
@@ -100,10 +112,10 @@ public class BoardService{
 
         Comment comment = commentRepository.findByBoard(board);
 
-        BoardInquiryDto dto = BoardInquiryDto.dto(board);
+        BoardInquiryDto dto = new BoardInquiryDto(board);
 
         if(comment != null) {
-            dto = BoardInquiryDto.dto(board,comment);
+            dto = new BoardInquiryDto(board,comment);
         }
 
         return dto;
@@ -112,7 +124,9 @@ public class BoardService{
     @Transactional(readOnly = true)
     public Object boardList(SearchDto dto, Pageable pageable) {
 
-        return boardRepoImpl.boardList(dto,pageable);
+
+        return boardRepoImpl.boardList(dto,pageable)
+                .map(BoardDto:: new);
     }
 
 
