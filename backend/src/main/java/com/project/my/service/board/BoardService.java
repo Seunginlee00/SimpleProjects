@@ -1,16 +1,23 @@
 package com.project.my.service.board;
 
-import com.project.my.auth.service.Auth;
 import com.project.my.common.exception.ApiException;
 import com.project.my.common.exception.ExceptionData;
 import com.project.my.dto.board.BoardConfigDto;
 import com.project.my.dto.board.BoardDto;
 import com.project.my.dto.board.BoardInquiryDto;
-import com.project.my.entity.board.*;
+import com.project.my.dto.response.SearchDto;
+import com.project.my.entity.board.Board;
+import com.project.my.entity.board.BoardConfig;
+import com.project.my.entity.board.BoardConfigRepository;
+import com.project.my.entity.board.BoardRepository;
+import com.project.my.entity.board.Comment;
+import com.project.my.entity.board.CommentRepository;
+import com.project.my.entity.board.Impl.BoardRepositoryImpl;
 import com.project.my.entity.user.Users;
 import com.project.my.entity.user.query.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +32,14 @@ public class BoardService{
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
     private final UsersRepository usersRepository;
+    private final BoardRepositoryImpl boardRepoImpl;
+
+    /*
+    * 게시판 설정 변경
+    * */
+
+
+
 
     /*
     *  글쓰기
@@ -56,11 +71,13 @@ public class BoardService{
     * 글수정
     * */
 
-    public void boardUpdate(BoardDto dto) {
+    public long boardUpdate(BoardDto dto) {
         Board findBoard = boardRepository.findById(dto.boardId())
                         .orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_USER));
 
         findBoard.update(dto);
+
+        return findBoard.getId();
 
     }
 
@@ -92,12 +109,11 @@ public class BoardService{
         return dto;
     }
 
-//    @Transactional(readOnly = true)
-//    public Object boardList(SearchDto dto, Pageable pageable) {
-//
-//      return null;
-////        return boardImpl.boardList(dto,pageable);
-//    }
+    @Transactional(readOnly = true)
+    public Object boardList(SearchDto dto, Pageable pageable) {
+
+        return boardRepoImpl.boardList(dto,pageable);
+    }
 
 
 //    /*
