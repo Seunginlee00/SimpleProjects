@@ -29,9 +29,8 @@ public class BoardController {
 
     @Operation(summary = "게시판 수정 하기")
     @PatchMapping
-    public ResponseEntity<String> boardUpdate(@RequestBody BoardDto dto) {
-        boardService.boardUpdate(dto);
-        return ResponseEntity.ok().body("게시판 수정");
+    public ResponseEntity<?> boardUpdate(@RequestBody BoardDto dto) {
+        return ResponseEntity.ok().body(boardService.boardUpdate(dto));
     }
 
 
@@ -45,17 +44,14 @@ public class BoardController {
     @Operation(summary = "게시판 단일 조회 하기")
     @GetMapping("/{id}")
     public ResponseEntity<Object> boardInquiry(@PathVariable(name = "id") Long boardId) {
-        boardService.boardInquiry(boardId);
-        return ResponseEntity.ok().body("게시판 단일 조회");
+
+        return ResponseEntity.ok().body(boardService.boardInquiry(boardId));
     }
 
     @Operation(summary = "게시판 목록 조회 하기")
     @GetMapping()
     public ResponseEntity<Object> boardList(SearchDto dto, @PageableDefault(size = 20, direction = Sort.Direction.DESC) @Parameter(hidden = true) Pageable pageable) {
-
-        boardService.boardList(dto,pageable);
-
-        return ResponseEntity.ok().body("게시판 목록 조회");
+        return ResponseEntity.ok().body( boardService.boardList(dto,pageable));
     }
 //
 //

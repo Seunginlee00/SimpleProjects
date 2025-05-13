@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface BoardConfigRepository extends JpaRepository<BoardConfig,Long>{
-    Optional<BoardConfig> findByBoardType(BoardType boardType);
+    BoardConfig findByBoardType(BoardType boardType);
 
 }

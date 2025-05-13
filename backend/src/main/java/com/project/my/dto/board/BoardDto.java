@@ -13,7 +13,7 @@ public record BoardDto(
         Long boardId,
         LocalDateTime createdDate,
         LocalDateTime modifiedDate,
-        BoardType boardType,
+        BoardType boardType, //n 공지 , f 자유
         String classify,
         String subject,
         String content,
@@ -31,6 +31,7 @@ public record BoardDto(
                 .views(0)
                 .isDelete(false)
                 .isTopExpo(isTopExpo)
+                .answerType(false)
                 .boardConfig(boardConfig)
                 .users(users)
                 .build();

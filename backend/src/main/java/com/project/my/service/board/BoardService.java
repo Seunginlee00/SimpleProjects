@@ -5,6 +5,7 @@ import com.project.my.common.exception.ExceptionData;
 import com.project.my.dto.board.BoardConfigDto;
 import com.project.my.dto.board.BoardDto;
 import com.project.my.dto.board.BoardInquiryDto;
+import com.project.my.dto.board.BoardResponseDto;
 import com.project.my.dto.response.SearchDto;
 import com.project.my.entity.board.Board;
 import com.project.my.entity.board.BoardConfig;
@@ -40,8 +41,10 @@ public class BoardService{
     * */
 
     public String boardConfigChange(BoardConfigDto configDto){
-        BoardConfig config = boardConfigRepository.findByBoardType(configDto.boardType())
-                .orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_BOARD_CONFIG));
+        BoardConfig config = boardConfigRepository.findByBoardType(configDto.boardType());
+        if(config == null){
+            throw new ApiException(ExceptionData.NOT_FOUND_BOARD_CONFIG);
+        }
 
         config.update(configDto);
 
@@ -55,10 +58,9 @@ public class BoardService{
     *  글쓰기
     * */
 
-    public Board boardInsert(Long userId, BoardDto dto) {
+    public BoardResponseDto boardInsert(Long userId, BoardDto dto) {
         Board board = null;
-        BoardConfig config = configRepository.findByBoardType(dto.boardType())
-                .orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_BOARD_CONFIG));
+        BoardConfig config = configRepository.findByBoardType(dto.boardType());
 
         Users users = usersRepository.getReferenceById(userId);
 
@@ -76,20 +78,22 @@ public class BoardService{
             board = dto.toEntity(users,config);
         }
 
-        return boardRepository.save(board);
+        Board saveBoard = boardRepository.save(board);
+
+        return new BoardResponseDto(saveBoard);
     }
 
     /*
     * 글수정
     * */
 
-    public long boardUpdate(BoardDto dto) {
+    public BoardResponseDto boardUpdate(BoardDto dto) {
         Board findBoard = boardRepository.findById(dto.boardId())
                         .orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_USER));
 
         findBoard.update(dto);
 
-        return findBoard.getId();
+        return BoardResponseDto.from(findBoard);
 
     }
 
@@ -123,7 +127,6 @@ public class BoardService{
 
     @Transactional(readOnly = true)
     public Object boardList(SearchDto dto, Pageable pageable) {
-
 
         return boardRepoImpl.boardList(dto,pageable)
                 .map(BoardDto:: new);

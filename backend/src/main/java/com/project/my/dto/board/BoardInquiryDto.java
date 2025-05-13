@@ -22,13 +22,22 @@ public record BoardInquiryDto(
         int views,
         Boolean isTopExpo,
         Boolean answerType,
-        // 댓글
-        Long commentId,
-        String commentContent,
-        LocalDateTime cCreatedDate,
-        LocalDateTime cModfiedDate
+
+        BoardInquiryCommentDto comment
 
 ) {
+
+    public record BoardInquiryCommentDto(
+            // 댓글
+            Long commentId,
+            String commentContent,
+            LocalDateTime cCreatedDate,
+            LocalDateTime cModfiedDate
+
+    ){
+
+    }
+
     // 댓글이 없는 경우
     public BoardInquiryDto(Board board){
         this(
@@ -40,7 +49,7 @@ public record BoardInquiryDto(
                 Optional.ofNullable(board.getContent()).orElse("none"),
                 Optional.ofNullable(board.getUsers().getNickname()).orElse("none"),
                 board.getViews(),board.getIsTopExpo(),board.getAnswerType(),
-                -1L,"none",LocalDateTime.MIN,LocalDateTime.MIN
+                null
         );
     }
 
@@ -55,11 +64,13 @@ public record BoardInquiryDto(
                 Optional.ofNullable(board.getContent()).orElse("none"),
                 Optional.ofNullable(board.getUsers().getNickname()).orElse("none"),
                 board.getViews(),board.getIsTopExpo(),board.getAnswerType(),
-                comment.getId(),
-                Optional.ofNullable(comment.getContent()).orElse("none"),
-                comment.getCreatedDate(),
-                Optional.ofNullable(comment.getModifiedDate()).orElse(LocalDateTime.MIN)
-                );
+                new BoardInquiryCommentDto(
+                        comment.getId(),
+                        Optional.ofNullable(comment.getContent()).orElse("none"),
+                        comment.getCreatedDate(),
+                        Optional.ofNullable(comment.getModifiedDate()).orElse(LocalDateTime.MIN)
+                )
+            );
     }
 
 }

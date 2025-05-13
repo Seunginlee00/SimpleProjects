@@ -36,7 +36,6 @@ public class BoardRepositoryImpl {
                 select(board.count())
                 .from(board)
                 .where(deleteNo(),keywordDto(dto), boardType(dto))
-                .orderBy(board.id.desc())
                 .fetchOne();
 
         return new PageImpl<>(boardList, pageable, total);
