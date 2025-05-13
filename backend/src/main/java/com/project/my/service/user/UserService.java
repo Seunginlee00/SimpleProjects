@@ -3,6 +3,7 @@ package com.project.my.service.user;
 import com.project.my.common.exception.ApiException;
 import com.project.my.common.exception.ExceptionData;
 import com.project.my.dto.login.UserRegisterRequest;
+import com.project.my.dto.login.UserResponseDto;
 import com.project.my.dto.response.SearchDto;
 import com.project.my.dto.response.UserResponse;
 import com.project.my.entity.user.Users;
@@ -14,6 +15,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -35,23 +37,24 @@ public class UserService {
 * 회원가입
 * */
 
-    public String userSignUp(UserRegisterRequest request)  {
+    public UserResponseDto userSignUp(UserRegisterRequest request)  {
 
-        log.debug("서비스단 들어옴");
         if(usersRepository.existsByLoginId(request.loginId())){
             throw new ApiException(ExceptionData.EXISTS_USER);
         }
 
         Users user = request.toEntity(passwordEncoder.encode(request.password()));
-        usersRepository.save(user);
-        return "가입되었습니다.";
+        Users saveUser = usersRepository.save(user);
+
+
+        return new UserResponseDto(saveUser);
     }
 
 
     /*
      * 회원 수정
      * */
-    public String userUpdate(Long userId, UserRegisterRequest request) {
+    public UserResponseDto userUpdate(Long userId, UserRegisterRequest request) {
 
         Users findUser = usersRepository.findById(userId)
                 .orElseThrow(()-> new ApiException(ExceptionData.NOT_FOUND_USER));
@@ -60,7 +63,7 @@ public class UserService {
             .map(passwordEncoder::encode)
             .ifPresent(newPassword -> findUser.update(request, newPassword));
 
-         return "수정 되었습니다.";
+         return UserResponseDto.from(findUser);
     }
 
     /*
@@ -87,14 +90,13 @@ public class UserService {
     /*
      * 회원 삭제
      * */
-    public String delete(List<Long> deleteIds)  {
+    public void delete(List<Long> deleteIds)  {
 
         for (Long di : deleteIds) {
             Users findUser = usersRepository.findById(di).orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_USER));
             usersRepository.delete(findUser);
         }
 
-        return "가입되었습니다.";
     }
 
 

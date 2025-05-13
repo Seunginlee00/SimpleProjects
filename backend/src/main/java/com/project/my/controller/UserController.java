@@ -73,7 +73,8 @@ https://ng-log.tistory.com/entry/SpringBoot-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80
     @PatchMapping("/delete")
     public ResponseEntity<?> userDelete(@RequestBody List<Long> delIds)
     {
-        return ResponseEntity.ok(userService.delete(delIds));
+        userService.delete(delIds);
+        return ResponseEntity.ok("게시판 삭제");
     }
 
 
