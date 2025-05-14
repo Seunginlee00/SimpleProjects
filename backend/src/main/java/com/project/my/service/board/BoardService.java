@@ -2,10 +2,7 @@ package com.project.my.service.board;
 
 import com.project.my.common.exception.ApiException;
 import com.project.my.common.exception.ExceptionData;
-import com.project.my.dto.board.BoardConfigDto;
-import com.project.my.dto.board.BoardDto;
-import com.project.my.dto.board.BoardInquiryDto;
-import com.project.my.dto.board.BoardResponseDto;
+import com.project.my.dto.board.*;
 import com.project.my.dto.response.SearchDto;
 import com.project.my.entity.board.Board;
 import com.project.my.entity.board.BoardConfig;
@@ -40,15 +37,13 @@ public class BoardService{
     * 게시판 설정 변경
     * */
 
-    public String boardConfigChange(BoardConfigDto configDto){
+    public void boardConfigChange(BoardConfigDto configDto){
         BoardConfig config = boardConfigRepository.findByBoardType(configDto.boardType());
         if(config == null){
             throw new ApiException(ExceptionData.NOT_FOUND_BOARD_CONFIG);
         }
 
         config.update(configDto);
-
-        return "수정 되었습니다.";
 
     }
 
@@ -133,18 +128,17 @@ public class BoardService{
     }
 
 
-//    /*
-//    * 댓글 입력
-//    * */
-//    public void commentInsert(CommentDto dto) {
-//        Board board = boardRepository.findById(dto.boardId()).orElseThrow(() ->
-//            new NotFoundElementException("해당 게시글을 찾을 수 없습니다."));
-//        Comment comment = dto.toEntity("추후토큰값",board);
-//
-//        commentRepository.save(comment);
-//        board.setAnswerType();
-//    }
-//
+    /*
+    * 댓글 입력
+    * */
+    public void commentInsert(Long userId, CommentDto dto) {
+        Board board = boardRepository.findById(dto.boardId()).orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_BOARD));
+        Comment comment = dto.toEntity("추후토큰값",board);
+
+        commentRepository.save(comment);
+        board.setAnswerType();
+    }
+
 //    /*
 //    * 댓글 수정
 //    * */

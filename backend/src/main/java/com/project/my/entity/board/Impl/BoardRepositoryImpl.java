@@ -28,8 +28,8 @@ public class BoardRepositoryImpl {
         List<Board> boardList =
                 query.select(board)
                 .from(board)
-                .where(deleteNo(),keywordDto(dto), boardType(dto))
-                .orderBy(board.id.desc())
+                .where(deleteNo(), keywordDto(dto), boardType(dto))
+                .orderBy(board.isTopExpo.desc(), board.id.desc())
                 .fetch();
 
         Long total = query.

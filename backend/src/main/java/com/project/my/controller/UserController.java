@@ -37,7 +37,6 @@ https://ng-log.tistory.com/entry/SpringBoot-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80
     @Operation(summary = "회원 가입하기")
     @PostMapping("/join")
     public ResponseEntity<?> userJoin(@RequestBody UserRegisterRequest request) {
-        log.debug("들어옴");
         return ResponseEntity.ok(userService.userSignUp(request));
     }
 
@@ -54,7 +53,6 @@ https://ng-log.tistory.com/entry/SpringBoot-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80
     @GetMapping("/detail")
     public ResponseEntity<?> userDetail(@Auth Long userId, @RequestBody UserRegisterRequest request)
     {
-        log.debug("userId: {}",userId);
         return ResponseEntity.ok(userService.userSearch(request));
     }
 
