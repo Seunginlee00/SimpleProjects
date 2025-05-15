@@ -1,5 +1,6 @@
 package com.project.my.entity.board;
 
+import com.project.my.entity.user.Users;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
@@ -22,14 +23,16 @@ public class Comment extends com.project.my.common.entity.BaseEntity {
     @Column(columnDefinition = "TEXT")
     private String content; // 내용
 
-    @Column(length = 100)
-    private String userName; // 회원명
-
     private Boolean isDelete;  // 삭제 여부
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "users_id")
+    private Users users;
+
 
     public void update(com.project.my.dto.board.CommentDto dto){
         if(dto.content() != null)

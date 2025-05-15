@@ -1,11 +1,9 @@
 package com.project.my.service.board;
 
+import com.project.my.common.Util;
 import com.project.my.common.exception.ApiException;
 import com.project.my.common.exception.ExceptionData;
-import com.project.my.dto.board.BoardConfigDto;
-import com.project.my.dto.board.BoardDto;
-import com.project.my.dto.board.BoardInquiryDto;
-import com.project.my.dto.board.BoardResponseDto;
+import com.project.my.dto.board.*;
 import com.project.my.dto.response.SearchDto;
 import com.project.my.entity.board.Board;
 import com.project.my.entity.board.BoardConfig;
@@ -32,7 +30,7 @@ public class BoardService{
     private final BoardConfigRepository configRepository;
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
-    private final UsersRepository usersRepository;
+    private final Util util;
     private final BoardRepositoryImpl boardRepoImpl;
     private final BoardConfigRepository boardConfigRepository;
 
@@ -62,7 +60,7 @@ public class BoardService{
         Board board = null;
         BoardConfig config = configRepository.findByBoardType(dto.boardType());
 
-        Users users = usersRepository.getReferenceById(userId);
+        Users users = util.getCommonUserInfo(userId);
 
         if(config == null){
             // 해당 분류가 없다면
@@ -136,10 +134,12 @@ public class BoardService{
 //    /*
 //    * 댓글 입력
 //    * */
-//    public void commentInsert(CommentDto dto) {
-//        Board board = boardRepository.findById(dto.boardId()).orElseThrow(() ->
-//            new NotFoundElementException("해당 게시글을 찾을 수 없습니다."));
-//        Comment comment = dto.toEntity("추후토큰값",board);
+//    public void commentInsert(Long userId, CommentDto dto) {
+//        Board board = boardRepository.findById(dto.boardId()).orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_BOARD));
+//
+//        Users users = util.getCommonUserInfo(userId);
+//
+//        Comment comment = dto.toEntity(users,board);
 //
 //        commentRepository.save(comment);
 //        board.setAnswerType();
@@ -150,8 +150,9 @@ public class BoardService{
 //    * */
 //
 //    public void commentUpdate(CommentDto dto) {
+//        Comment comment commentRepository.findByBoard(dto.boardId())
 //    }
-//
+
 //    /*
 //    * 댓글 삭제
 //    * */

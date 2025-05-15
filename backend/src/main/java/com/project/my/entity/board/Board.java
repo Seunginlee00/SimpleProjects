@@ -64,7 +64,7 @@ public class Board extends BaseEntity {
     }
 
     public void setAnswerType() {
-        this.answerType = !answerType;
+        this.answerType = true;
     }
 
 
