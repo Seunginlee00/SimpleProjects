@@ -1,6 +1,7 @@
 package com.project.my.controller;
 
 import com.project.my.auth.service.Auth;
+import com.project.my.dto.board.BoardConfigDto;
 import com.project.my.dto.board.BoardDto;
 import com.project.my.dto.response.SearchDto;
 import com.project.my.service.board.BoardService;
@@ -38,7 +39,7 @@ public class BoardController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> boardDelete(@PathVariable(name = "id") Long boardId) {
         boardService.boardDelete(boardId);
-        return ResponseEntity.ok().body("게시판 삭제");
+        return ResponseEntity.ok().body("게시판을 삭제");
     }
 
     @Operation(summary = "게시판 단일 조회 하기")
@@ -52,6 +53,13 @@ public class BoardController {
     @GetMapping()
     public ResponseEntity<Object> boardList(SearchDto dto, @PageableDefault(size = 20, direction = Sort.Direction.DESC) @Parameter(hidden = true) Pageable pageable) {
         return ResponseEntity.ok().body( boardService.boardList(dto,pageable));
+    }
+
+    @Operation(summary = "게시판 설정 변경 하기")
+    @GetMapping()
+    public ResponseEntity<Object> boardConfig(@Auth Long userId, BoardConfigDto dto) {
+        boardService.boardConfigChange(dto);
+        return ResponseEntity.ok().body("게시판 설정 변경");
     }
 //
 //
