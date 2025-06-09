@@ -36,9 +36,11 @@ public class Users extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role; // 권한 일반/관리자
 
+    @Builder.Default
     @Column(name = "is_delete", nullable = false, columnDefinition = "boolean default false")
     private boolean isDelete = false;
 
+    @Builder.Default
     @OneToMany(mappedBy = "users")
     List<Board> boardList = new ArrayList<>();
 

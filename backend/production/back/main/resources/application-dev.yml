@@ -1,6 +1,6 @@
 spring:
   jwt:
-    secret: projectbyseunginjavaproject
+    secret: akxpsfhglvmshtltmakdlzmwkznfkdlekflwhsskrlfdjsjanwhgdmssmRla
   servlet:
     multipart:
       enabled: true
@@ -10,8 +10,9 @@ spring:
   config:
     activate:
       on-profile:
-        prod
+        dev
   datasource:
+#    url: jdbc:postgresql://d-seungin.duckdns.org:5432/project
     url: jdbc:postgresql://d-seungin.duckdns.org:5432/postgres?currentSchema=project
     username: project
     password: project00**
