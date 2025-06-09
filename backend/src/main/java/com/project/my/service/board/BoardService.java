@@ -1,5 +1,6 @@
 package com.project.my.service.board;
 
+import com.project.my.common.Util;
 import com.project.my.common.exception.ApiException;
 import com.project.my.common.exception.ExceptionData;
 import com.project.my.dto.board.*;
@@ -29,7 +30,7 @@ public class BoardService{
     private final BoardConfigRepository configRepository;
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
-    private final UsersRepository usersRepository;
+    private final Util util;
     private final BoardRepositoryImpl boardRepoImpl;
     private final BoardConfigRepository boardConfigRepository;
 
@@ -37,13 +38,15 @@ public class BoardService{
     * 게시판 설정 변경
     * */
 
-    public void boardConfigChange(BoardConfigDto configDto){
+    public String boardConfigChange(BoardConfigDto configDto){
         BoardConfig config = boardConfigRepository.findByBoardType(configDto.boardType());
         if(config == null){
             throw new ApiException(ExceptionData.NOT_FOUND_BOARD_CONFIG);
         }
 
         config.update(configDto);
+
+        return "수정 되었습니다.";
 
     }
 
@@ -57,7 +60,7 @@ public class BoardService{
         Board board = null;
         BoardConfig config = configRepository.findByBoardType(dto.boardType());
 
-        Users users = usersRepository.getReferenceById(userId);
+        Users users = util.getCommonUserInfo(userId);
 
         if(config == null){
             // 해당 분류가 없다면
@@ -128,24 +131,28 @@ public class BoardService{
     }
 
 
-    /*
-    * 댓글 입력
-    * */
-    public void commentInsert(Long userId, CommentDto dto) {
-        Board board = boardRepository.findById(dto.boardId()).orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_BOARD));
-        Comment comment = dto.toEntity("추후토큰값",board);
-
-        commentRepository.save(comment);
-        board.setAnswerType();
-    }
-
+//    /*
+//    * 댓글 입력
+//    * */
+//    public void commentInsert(Long userId, CommentDto dto) {
+//        Board board = boardRepository.findById(dto.boardId()).orElseThrow(() -> new ApiException(ExceptionData.NOT_FOUND_BOARD));
+//
+//        Users users = util.getCommonUserInfo(userId);
+//
+//        Comment comment = dto.toEntity(users,board);
+//
+//        commentRepository.save(comment);
+//        board.setAnswerType();
+//    }
+//
 //    /*
 //    * 댓글 수정
 //    * */
 //
 //    public void commentUpdate(CommentDto dto) {
+//        Comment comment commentRepository.findByBoard(dto.boardId())
 //    }
-//
+
 //    /*
 //    * 댓글 삭제
 //    * */
