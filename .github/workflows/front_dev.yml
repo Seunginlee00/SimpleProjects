@@ -1,0 +1,36 @@
+name: Deploy Frontend
+
+on:
+  push:
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/deploy-frontend.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Copy Frontend to EC2
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          source: "frontend"
+          target: "/home/ec2-user/project/frontend"
+
+      - name: Deploy Frontend
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd /home/ec2-user/project/frontend
+            docker build -t my-frontend .
+            docker stop frontend || true
+            docker rm frontend || true
+            docker run -d -p 3000:3000 --name frontend my-frontend
