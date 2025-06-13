@@ -21,10 +21,10 @@ jobs:
             cd /home/ubuntu/docker/SimpleProjects
 
             # 최신 코드 가져오기
-            git pull origin master
+            sudo git pull origin master
 
             # 도커 이미지 빌드
-            docker build -t my-local-image .
+            sudo docker build -t project -f ./docker/Dockerfile-back .
 
             # 기존 컨테이너 정리
             docker stop my-container || true
