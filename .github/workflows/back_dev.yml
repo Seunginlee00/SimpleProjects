@@ -38,4 +38,4 @@ jobs:
             docker compose -f docker-compose.yml build project   # 💡 이미지 빌드
             docker compose -f docker-compose.yml up -d project   # 💡 배포
             
-            echo "✅ Meta 서비스 배포 완료!"
+            echo "✅ project 서비스 배포 완료!"
