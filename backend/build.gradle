@@ -91,4 +91,8 @@ tasks.named('test') {
 }
 
 
+bootJar {
+	archiveFileName = 'app.jar'
+}
+
 compileJava { options.compilerArgs << '-parameters' }

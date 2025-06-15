@@ -2,17 +2,26 @@ FROM gradle:7.6-jdk17 AS build
 
 WORKDIR /app
 
-# gradle 관련 파일 복사 (캐시 활용 목적)
 COPY backend/gradle /app/backend/gradle
 COPY backend/gradlew /app/backend/gradlew
 RUN chmod +x /app/backend/gradlew
 COPY backend/build.gradle /app/backend/build.gradle
 COPY backend/settings.gradle /app/backend/settings.gradle
-
-# 전체 소스 복사 (gradlew, gradle files 포함한 backend 전체 복사도 가능)
 COPY backend/src /app/backend/src
 
 WORKDIR /app/backend
 
-# 빌드 수행
 RUN ./gradlew bootJar --stacktrace
+
+# ===============================================
+# 실제 실행할 경량 이미지를 위한 두 번째 스테이지
+# ===============================================
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
+
+COPY --from=build /app/backend/build/libs/app.jar .
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
