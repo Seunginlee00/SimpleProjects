@@ -17,25 +17,31 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # 소스가 있는 디렉토리로 이동 (예: /home/ubuntu/my-app)
             cd /home/ubuntu/docker/SimpleProjects
-
+    
             # 최신 코드 가져오기
             sudo git pull origin master
-
-            # 도커 이미지 빌드
-            sudo docker build -t project -f ./docker/Dockerfile-back .
-
-            # compose 사용을 위해 이동
+    
+            # 기존 이미지 삭제 (있으면)
+            EXISTING_IMAGE_ID=$(docker images -q project:latest)
+            if [ -n "$EXISTING_IMAGE_ID" ]; then
+            echo "🔁 기존 이미지 삭제 중..."
+            docker rmi -f "$EXISTING_IMAGE_ID"
+            fi
+    
+            # 새 이미지 빌드
+            echo "🔨 새 이미지 빌드 중..."
+            docker build -t project:latest -f ./docker/Dockerfile-back .
+    
             cd /home/ubuntu/docker
-
+    
             # 기존 컨테이너 정리
-            docker compose -f docker-compose.yml stop project
-            docker compose -f docker-compose.yml rm -f project
-            docker rmi project:latest || true   # project:latest 삭제 (없으면 에러 무시)
-            
-            # 5. 새로 빌드 후 배포
-            docker compose -f docker-compose.yml build project   # 💡 이미지 빌드
-            docker compose -f docker-compose.yml up -d project   # 💡 배포
-            
-            echo "✅ project 서비스 배포 완료!"
+            echo "🛑 기존 컨테이너 중지 및 삭제..."
+            docker compose -f docker-compose.yml stop project || true
+            docker compose -f docker-compose.yml rm -f project || true
+    
+            # 새 이미지로 컨테이너 실행
+            echo "🚀 새 이미지로 컨테이너 실행 중..."
+            docker compose -f docker-compose.yml up -d project
+    
+            echo "✅ 배포 완료!"
