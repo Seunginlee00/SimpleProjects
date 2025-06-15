@@ -26,12 +26,16 @@ jobs:
             # 도커 이미지 빌드
             sudo docker build -t project -f ./docker/Dockerfile-back .
 
-            # 기존 컨테이너 정리
-            docker stop my-container || true
-            docker rm my-container || true
+            # compose 사용을 위해 이동
+            cd /home/ubuntu/docker
 
-            # 새 컨테이너 실행
-            docker run -d \
-              --name my-container \
-              -p 80:80 \
-              my-local-image
+            # 기존 컨테이너 정리
+            docker compose -f docker-compose.yml stop project
+            docker compose -f docker-compose.yml rm -f project
+            docker rmi project:latest || true   # project:latest 삭제 (없으면 에러 무시)
+            
+            # 5. 새로 빌드 후 배포
+            docker compose -f docker-compose.yml build project   # 💡 이미지 빌드
+            docker compose -f docker-compose.yml up -d project   # 💡 배포
+            
+            echo "✅ Meta 서비스 배포 완료!"
