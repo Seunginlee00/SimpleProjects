@@ -1,25 +1,8 @@
-FROM gradle:8.13-jdk17 AS build
-
-WORKDIR /app/backend
-
-COPY backend/gradle /app/backend/gradle
-COPY backend/gradlew /app/backend/gradlew
-COPY backend/settings.gradle /app/backend/settings.gradle
-COPY backend/build.gradle /app/backend/build.gradle
-
-# 의존성 먼저 다운로드 (속도 향상)
-RUN ./gradlew build --dry-run || true
-
-# 소스 복사 후 빌드
-COPY backend/src /app/backend/src
-
-RUN ./gradlew bootJar --stacktrace
-
-# 2단계: 실행
 FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
-COPY --from=build /app/backend/build/libs/*.jar app.jar
+
+COPY backend/build/libs/*.jar app.jar
 
 EXPOSE 8080
 

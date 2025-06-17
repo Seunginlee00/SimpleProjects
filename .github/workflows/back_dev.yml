@@ -1,56 +1,35 @@
-name: Deploy to My Server
+- name: 🔐 SSH into server and deploy
+  uses: appleboy/ssh-action@v1.0.0
+  with:
+    host: ${{ secrets.SERVER_IP }}
+    username: ${{ secrets.SERVER_USER }}
+    key: ${{ secrets.SSH_PRIVATE_KEY }}
+    script: |
+      cd /home/ubuntu/docker/SimpleProjects
 
-on:
-  push:
-    branches:
-      - master
+      echo "📡 최신 코드 가져오기"
+      git pull origin master
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+      echo "🧹 Gradle 캐시 삭제 (필요 시)"
+      rm -rf backend/.gradle
 
-    steps:
-      - name: 📥 Checkout Repository
-        uses: actions/checkout@v3
+      echo "🔨 서버 내에서 bootJar 빌드 중..."
+      cd backend
+      ./gradlew bootJar --stacktrace || { echo '❌ Gradle 빌드 실패'; exit 1; }
+      cd ..
 
-      - name: 📦 Gradle Cache
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+      echo "🧼 기존 이미지 삭제 (있으면)"
+      docker rmi -f project:latest || true
 
-      - name: 🔐 SSH into server and deploy
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/ubuntu/docker/SimpleProjects
+      echo "🐳 Docker 이미지 빌드 중..."
+      # Dockerfile은 /home/ubuntu/docker/Dockerfile-back 위치에 있다고 가정
+      docker build -t project:latest -f ../docker/Dockerfile-back .
 
-            echo "📡 최신 코드 가져오기"
-            git pull origin master
+      echo "🛑 기존 컨테이너 중지 및 삭제..."
+      docker compose -f docker-compose.yml stop project || true
+      docker compose -f docker-compose.yml rm -f project || true
 
-            echo "🧼 기존 이미지 삭제 (있는 경우)"
-            EXISTING_IMAGE_ID=$(docker images -q project:latest)
-            if [ -n "$EXISTING_IMAGE_ID" ]; then
-              docker rmi -f "$EXISTING_IMAGE_ID"
-            fi
+      echo "🚀 새 이미지로 컨테이너 실행 중..."
+      docker compose -f docker-compose.yml up -d project
 
-            echo "🔨 새 이미지 빌드 중..."
-            docker build -t project:latest -f ./docker/Dockerfile-back .
-
-            cd /home/ubuntu/docker
-
-            echo "🛑 기존 컨테이너 중지 및 삭제..."
-            docker compose -f docker-compose.yml stop project || true
-            docker compose -f docker-compose.yml rm -f project || true
-
-            echo "🚀 새 이미지로 컨테이너 실행 중..."
-            docker compose -f docker-compose.yml up -d project
-
-            echo "✅ 배포 완료!"
+      echo "✅ 배포 완료!"
