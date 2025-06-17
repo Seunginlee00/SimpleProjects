@@ -31,7 +31,7 @@ jobs:
             echo "🔨 서버 내에서 bootJar 빌드 중..."
             cd backend
             
-            chmod +x backend/gradlew
+            chmod +x ./gradlew
             
             ./gradlew bootJar --stacktrace || { echo '❌ Gradle 빌드 실패'; exit 1; }
             cd ..
@@ -40,7 +40,7 @@ jobs:
             docker rmi -f project:latest || true
 
             echo "🐳 Docker 이미지 빌드 중..."
-            docker build -t project:latest -f ../docker/Dockerfile-back .
+            docker build -t project:latest -f ./docker/Dockerfile-back .
 
             echo "🛑 기존 컨테이너 중지 및 삭제..."
             docker compose -f docker-compose.yml stop project || true
