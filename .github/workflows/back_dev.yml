@@ -30,6 +30,9 @@ jobs:
 
             echo "🔨 서버 내에서 bootJar 빌드 중..."
             cd backend
+            
+            chmod +x backend/gradlew
+            
             ./gradlew bootJar --stacktrace || { echo '❌ Gradle 빌드 실패'; exit 1; }
             cd ..
 
