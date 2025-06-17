@@ -1,21 +1,24 @@
-FROM gradle:7.6-jdk17 AS build
-
-WORKDIR /app/backend
-
-COPY backend/build.gradle /app/backend/build.gradle
-COPY backend/settings.gradle /app/backend/settings.gradle
-COPY backend/src /app/backend/src
-
-# /app/backend 에서 실행해야 함
-RUN gradle bootJar --no-daemon --stacktrace
-
-# ===============================================
-# 실제 실행할 경량 이미지를 위한 두 번째 스테이지
-# ===============================================
-FROM eclipse-temurin:17-jdk
+# 1단계: 빌드
+FROM gradle:8.13-jdk17 AS build
 
 WORKDIR /app
 
+COPY backend/gradle /app/backend/gradle
+COPY backend/gradlew /app/backend/gradlew
+RUN chmod +x /app/backend/gradlew
+
+COPY backend/build.gradle /app/backend/
+COPY backend/settings.gradle /app/backend/
+COPY backend/src /app/backend/src
+
+WORKDIR /app/backend
+
+RUN ./gradlew bootJar --no-daemon
+
+# 2단계: 실행
+FROM eclipse-temurin:17-jdk
+
+WORKDIR /app
 COPY --from=build /app/backend/build/libs/*.jar app.jar
 
 EXPOSE 8080
