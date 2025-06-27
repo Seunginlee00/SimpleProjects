@@ -56,7 +56,7 @@ public class BoardController {
     }
 
     @Operation(summary = "게시판 설정 변경 하기")
-    @GetMapping()
+    @GetMapping("/config")
     public ResponseEntity<Object> boardConfig(@Auth Long userId, BoardConfigDto dto) {
         boardService.boardConfigChange(dto);
         return ResponseEntity.ok().body("게시판 설정 변경");
