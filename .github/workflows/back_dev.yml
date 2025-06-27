@@ -43,11 +43,11 @@ jobs:
             docker build -t project:latest -f ./docker/Dockerfile-back .
 
             echo "🛑 기존 컨테이너 중지 및 삭제..."
-            docker compose -f docker-compose.yml stop project || true
-            docker compose -f docker-compose.yml rm -f project || true
+            docker compose -f /home/ubuntu/docker/docker-compose.yml stop project || true
+            docker compose -f /home/ubuntu/docker/docker-compose.yml rm -f project || true
 
             echo "🚀 새 이미지로 컨테이너 실행 중..."
-            docker compose -f docker-compose.yml up -d project
+            docker compose -f /home/ubuntu/docker/docker-compose.yml up -d project
 
             echo "✅ 배포 완료!"
             
