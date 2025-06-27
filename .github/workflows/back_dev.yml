@@ -25,28 +25,23 @@ jobs:
             echo "📡 최신 코드 가져오기"
             git pull origin back
 
-            echo "🧹 Gradle 캐시 삭제 (필요 시)"
-            rm -rf backend/.gradle
-
-            echo "🔨 서버 내에서 bootJar 빌드 중..."
+            echo "🔨 서버 내에서 bootJar 클린 빌드"
             cd backend
-            
             chmod +x ./gradlew
-            
-            ./gradlew bootJar --stacktrace || { echo '❌ Gradle 빌드 실패'; exit 1; }
+            ./gradlew clean bootJar --stacktrace || { echo '❌ Gradle 빌드 실패'; exit 1; }
             cd ..
 
             echo "🧼 기존 이미지 삭제 (있으면)"
             docker rmi -f project:latest || true
 
-            echo "🐳 Docker 이미지 빌드 중..."
-            docker build -t project:latest -f ./docker/Dockerfile-back .
+            echo "🐳 Docker 이미지 빌드 중 (캐시 무시)"
+            docker build --no-cache -t project:latest -f ./docker/Dockerfile-back .
 
-            echo "🛑 기존 컨테이너 중지 및 삭제..."
+            echo "🛑 기존 컨테이너 중지 및 삭제"
             docker compose -f /home/ubuntu/docker/docker-compose.yml stop project || true
             docker compose -f /home/ubuntu/docker/docker-compose.yml rm -f project || true
 
-            echo "🚀 새 이미지로 컨테이너 실행 중..."
+            echo "🚀 새 이미지로 컨테이너 실행 중"
             docker compose -f /home/ubuntu/docker/docker-compose.yml up -d project
 
             echo "✅ 배포 완료!"
