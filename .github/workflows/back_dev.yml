@@ -26,11 +26,8 @@ jobs:
             git pull origin masters
 
             echo "🧹 Gradle 캐시 삭제 (필요 시)"
-            rm -rf backend/.gradle
+            rm -rf .gradle
 
-            echo "🔨 서버 내에서 bootJar 빌드 중..."
-            cd backend
-            
             chmod +x ./gradlew
             
             ./gradlew bootJar --stacktrace || { echo '❌ Gradle 빌드 실패'; exit 1; }
