@@ -50,4 +50,3 @@ jobs:
             docker compose -f /home/ubuntu/docker/docker-compose.yml up -d project
 
             echo "✅ 배포 완료!"
-            
