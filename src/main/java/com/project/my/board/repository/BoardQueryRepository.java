@@ -1,9 +1,9 @@
 package com.project.my.board.repository;
 
+import com.project.my.board.entity.QBoard;
+import com.project.my.board.entity.QBoardConfig;
 import com.project.my.common.dto.response.SearchDto;
 import com.project.my.board.entity.Board;
-import com.project.my.entity.board.QBoard;
-import com.project.my.entity.board.QBoardConfig;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;

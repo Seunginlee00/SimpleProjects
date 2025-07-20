@@ -1,7 +1,7 @@
 package com.project.my.user.repository;
 
 import com.project.my.common.dto.response.SearchDto;
-import com.project.my.entity.user.QUsers;
+import com.project.my.user.entity.QUsers;
 import com.project.my.user.entity.Users;
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;

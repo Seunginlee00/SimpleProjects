@@ -8,6 +8,8 @@ import com.project.my.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
+import java.util.Map;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -74,6 +76,42 @@ https://ng-log.tistory.com/entry/SpringBoot-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80
         userService.delete(delIds);
         return ResponseEntity.ok("게시판 삭제");
     }
+
+    // 로그 아웃
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@Auth Long userId) {
+
+        // Redis 에서 해당 사용자의 accessToken/refreshToken 모두 삭제
+//        jwtTokenStoreService.removeTokenForUser(userId);
+//        jwtTokenStoreService.removeRefreshTokenForUser(userId);
+
+        return ResponseEntity.ok(Map.of("result", "logout_success"));
+    }
+
+
+    // 회원 비밀번호 초기화
+//    @PostMapping("/user/pw-reset")
+//    @PreAuthorize("hasRole('ADMIN') or hasAuthority('ADMIN')") // 관리자만 허용
+//    public ResponseEntity<ResultDTO<Void>> resetMemberPassword(@RequestParam String memberId, Authentication authentication) {
+//        // 현재 관리자 정보 및 권한 추출
+//        String adminId = authentication.getName();
+//        boolean isAdmin = memberService.isAdmin(adminId);
+//
+//        // 관리자 권한 체크
+//        if (!isAdmin) {
+//            // 관리자 권한이 없는 사용자가 접속하여 처리하려 했다는 로그를 남겨야 함.
+//            ResultDTO<Void> fail = ResultDTO.<Void>builder()
+//                    .success(false)
+//                    .message("관리자 권한 없음")
+//                    .build();
+//            return ResponseEntity.ok(fail);
+//        }
+//
+//        ResultDTO<Void> result = memberService.resetMemberPassword(memberId, adminId);
+//        return ResponseEntity.ok(result);
+//    }
+
 
 
 }

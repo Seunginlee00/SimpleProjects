@@ -1,4 +1,8 @@
 spring:
+  data:
+    redis:
+      host: 158.179.162.157
+      port: 16380
   jwt:
     secret: akxpsfhglvmshtltmakdlzmwkznfkdlekflwhsskrlfdjsjanwhgdmssmRla
   servlet:
