@@ -1,7 +1,7 @@
 package com.project.my.common;
 
-import com.project.my.entity.user.Users;
-import com.project.my.entity.user.query.UsersRepository;
+import com.project.my.user.entity.Users;
+import com.project.my.user.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

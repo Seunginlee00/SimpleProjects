@@ -1,7 +1,7 @@
 package com.project.my.config.jwt;
 
-import com.project.my.entity.user.Users;
-import com.project.my.entity.user.query.UsersRepository;
+import com.project.my.user.entity.Users;
+import com.project.my.user.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

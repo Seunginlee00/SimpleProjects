@@ -2,6 +2,8 @@ package com.project.my.entity.board;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.project.my.board.entity.BoardConfig;
+import com.project.my.board.entity.BoardType;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -19,7 +21,7 @@ public class QBoardConfig extends EntityPathBase<BoardConfig> {
 
     public static final QBoardConfig boardConfig = new QBoardConfig("boardConfig");
 
-    public final EnumPath<com.project.my.entity.enums.BoardType> boardType = createEnum("boardType", com.project.my.entity.enums.BoardType.class);
+    public final EnumPath<BoardType> boardType = createEnum("boardType", BoardType.class);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 

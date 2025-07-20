@@ -1,7 +1,7 @@
 package com.project.my.config.jwt;
 
-import com.project.my.entity.enums.Role;
-import com.project.my.entity.user.Users;
+import com.project.my.user.entity.Role;
+import com.project.my.user.entity.Users;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

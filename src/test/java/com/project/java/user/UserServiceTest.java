@@ -2,17 +2,16 @@ package com.project.java.user;
 
 import com.project.java.config.UserServiceTestConfig;
 import com.project.my.MainApplication;
-import com.project.my.dto.login.UserRegisterRequest;
-import com.project.my.entity.enums.Role;
-import com.project.my.entity.user.Users;
-import com.project.my.entity.user.query.UsersRepository;
-import com.project.my.service.user.UserService;
-import java.util.ArrayList;
+import com.project.my.user.dto.UserRegisterRequest;
+import com.project.my.user.entity.Role;
+import com.project.my.user.entity.Users;
+import com.project.my.user.repository.UsersRepository;
+import com.project.my.user.service.UserService;
+
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

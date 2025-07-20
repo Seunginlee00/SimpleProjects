@@ -1,9 +1,8 @@
 package com.project.my.config.jwt;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.my.dto.login.LoginRequest;
-import com.project.my.dto.response.JwtResponse;
+import com.project.my.common.dto.login.LoginRequest;
+import com.project.my.common.dto.response.JwtResponse;
 import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

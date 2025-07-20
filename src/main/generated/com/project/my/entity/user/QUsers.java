@@ -2,6 +2,9 @@ package com.project.my.entity.user;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.project.my.board.entity.Board;
+import com.project.my.user.entity.Role;
+import com.project.my.user.entity.Users;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -22,7 +25,7 @@ public class QUsers extends EntityPathBase<Users> {
 
     public final com.project.my.common.entity.QBaseEntity _super = new com.project.my.common.entity.QBaseEntity(this);
 
-    public final ListPath<com.project.my.entity.board.Board, com.project.my.entity.board.QBoard> boardList = this.<com.project.my.entity.board.Board, com.project.my.entity.board.QBoard>createList("boardList", com.project.my.entity.board.Board.class, com.project.my.entity.board.QBoard.class, PathInits.DIRECT2);
+    public final ListPath<Board, com.project.my.entity.board.QBoard> boardList = this.<Board, com.project.my.entity.board.QBoard>createList("boardList", Board.class, com.project.my.entity.board.QBoard.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
@@ -42,7 +45,7 @@ public class QUsers extends EntityPathBase<Users> {
 
     public final StringPath password = createString("password");
 
-    public final EnumPath<com.project.my.entity.enums.Role> role = createEnum("role", com.project.my.entity.enums.Role.class);
+    public final EnumPath<Role> role = createEnum("role", Role.class);
 
     public QUsers(String variable) {
         super(Users.class, forVariable(variable));
