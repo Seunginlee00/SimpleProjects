@@ -23,8 +23,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
-	// 추후 추가 예정
-//	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
 //	implementation 'org.springframework.boot:spring-boot-starter-aop'
 
 	//Querydsl 추가

@@ -2,8 +2,11 @@ package com.project.my.config.jwt;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.Jwts.SIG;
+import io.jsonwebtoken.security.Keys;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.Map;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
@@ -20,6 +23,9 @@ https://github.com/globepoint-github/smart-taekwondo/blob/back_dev/backend/src/m
 @Slf4j
 @Component
 public class JwtProvider {
+
+    private static String key = "1234567890123456789012345678901234567890";
+
 
     private SecretKey secretKey;
 
@@ -102,6 +108,34 @@ public class JwtProvider {
                 log.debug("[토큰검증 오류]" + e.getClass());
                 throw new JwtException("[토큰검증 오류] 미처리 토큰 오류");
             }
+        }
+    }
+
+    public static Map<String, Object> validateToken2(String token) {
+
+        SecretKey key = null;
+
+        try {
+            try {
+                key = Keys.hmacShaKeyFor(JwtProvider.key.getBytes("UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+            Claims claims = Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+            log.info("claims: " + claims);
+
+            return claims;
+        } catch (ExpiredJwtException e) {
+            log.warn("Token is expired", e);
+            throw e;
+        } catch (JwtException e) {
+            log.error("Invalid JWT detected", e);
+            throw e;
         }
     }
 
