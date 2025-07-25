@@ -17,7 +17,7 @@ public record BoardResponseDto(
         this(board.getId(),
                 board.getSubject(),
                 board.getContent(),
-                board.getUsers().getNickname(),
+                board.getUsers().getUserNm(),
                 board.getCreatedDate(),
                 board.getModifiedDate());
     }
@@ -27,7 +27,7 @@ public record BoardResponseDto(
                     board.getId(),
                     board.getSubject(),
                     board.getContent(),
-                    board.getUsers().getNickname(),
+                    board.getUsers().getUserNm(),
                     board.getCreatedDate(),
                     board.getModifiedDate()
             );

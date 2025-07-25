@@ -1,3 +1,4 @@
+/*
 package com.project.my.board.repository;
 
 import com.project.my.board.entity.QBoard;
@@ -71,3 +72,4 @@ public class BoardQueryRepository {
 
 
 }
+*/

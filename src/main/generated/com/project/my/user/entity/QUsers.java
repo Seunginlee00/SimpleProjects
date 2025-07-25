@@ -22,10 +22,22 @@ public class QUsers extends EntityPathBase<Users> {
 
     public final com.project.my.common.entity.QBaseEntity _super = new com.project.my.common.entity.QBaseEntity(this);
 
+    public final NumberPath<Integer> access = createNumber("access", Integer.class);
+
+    public final DateTimePath<java.time.LocalDateTime> accessDate = createDateTime("accessDate", java.time.LocalDateTime.class);
+
+    public final NumberPath<Integer> accessFailedCount = createNumber("accessFailedCount", Integer.class);
+
+    public final NumberPath<Integer> admin = createNumber("admin", Integer.class);
+
     public final ListPath<com.project.my.board.entity.Board, com.project.my.board.entity.QBoard> boardList = this.<com.project.my.board.entity.Board, com.project.my.board.entity.QBoard>createList("boardList", com.project.my.board.entity.Board.class, com.project.my.board.entity.QBoard.class, PathInits.DIRECT2);
+
+    public final StringPath chosung = createString("chosung");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdDate = _super.createdDate;
+
+    public final NumberPath<Integer> display = createNumber("display", Integer.class);
 
     public final StringPath email = createString("email");
 
@@ -33,16 +45,24 @@ public class QUsers extends EntityPathBase<Users> {
 
     public final BooleanPath isDelete = createBoolean("isDelete");
 
+    public final NumberPath<Integer> isTempPassword = createNumber("isTempPassword", Integer.class);
+
+    public final DateTimePath<java.time.LocalDateTime> lastLoginDate = createDateTime("lastLoginDate", java.time.LocalDateTime.class);
+
     public final StringPath loginId = createString("loginId");
+
+    public final StringPath mobileNo = createString("mobileNo");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> modifiedDate = _super.modifiedDate;
 
-    public final StringPath nickname = createString("nickname");
+    public final StringPath passwd = createString("passwd");
 
-    public final StringPath password = createString("password");
+    public final DateTimePath<java.time.LocalDateTime> passwdChangeDate = createDateTime("passwdChangeDate", java.time.LocalDateTime.class);
 
-    public final EnumPath<Role> role = createEnum("role", Role.class);
+    public final StringPath salt = createString("salt");
+
+    public final StringPath userNm = createString("userNm");
 
     public QUsers(String variable) {
         super(Users.class, forVariable(variable));

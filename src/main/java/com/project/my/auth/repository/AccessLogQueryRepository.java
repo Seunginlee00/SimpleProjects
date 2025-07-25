@@ -1,6 +1,8 @@
+/*
 package com.project.my.auth.repository;
 
 import com.project.my.auth.dto.AccessLogDTO;
+import com.project.my.auth.dto.RecentLogDTO;
 import com.project.my.auth.entity.AccessLog;
 import com.project.my.auth.entity.ErrorCode;
 import com.project.my.common.CryptoUtil;
@@ -102,11 +104,13 @@ public class AccessLogSearchImpl {
                 ? path.getString(sortField).asc()
                 : path.getString(sortField).desc();
 
-        /**
+        */
+/**
          * 정렬은 조건이 조금만 복잡해져도 Pageable 의 Sort 기능을 사용하기 어렵다.
          * 루트 엔티티 범위를 넘어가는 동적 정렬 기능이 필요하면 스프링 데이터 페이징이 제공하는 Sort 를 사용하기 보다는
          * 파라미터를 직접 받아서 처리하는 것을 권장한다. - 김영한
-         */
+         *//*
+
 
         List<AccessLog> resultList = queryFactory
                 .selectFrom(accessLog)
@@ -185,3 +189,4 @@ public class AccessLogSearchImpl {
     }
 
 }
+*/

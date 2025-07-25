@@ -1,8 +1,5 @@
 package com.project.my.common;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class MaskingUtil {
 
     // 휴대폰 번호 마스킹

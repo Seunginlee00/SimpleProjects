@@ -49,11 +49,11 @@ public class BoardController {
         return ResponseEntity.ok().body(boardService.boardInquiry(boardId));
     }
 
-    @Operation(summary = "게시판 목록 조회 하기")
-    @GetMapping()
-    public ResponseEntity<Object> boardList(SearchDto dto, @PageableDefault(size = 20, direction = Sort.Direction.DESC) @Parameter(hidden = true) Pageable pageable) {
-        return ResponseEntity.ok().body( boardService.boardList(dto,pageable));
-    }
+//    @Operation(summary = "게시판 목록 조회 하기")
+//    @GetMapping()
+//    public ResponseEntity<Object> boardList(SearchDto dto, @PageableDefault(size = 20, direction = Sort.Direction.DESC) @Parameter(hidden = true) Pageable pageable) {
+//        return ResponseEntity.ok().body( boardService.boardList(dto,pageable));
+//    }
 
     @Operation(summary = "게시판 설정 변경 하기")
     @GetMapping("/config")

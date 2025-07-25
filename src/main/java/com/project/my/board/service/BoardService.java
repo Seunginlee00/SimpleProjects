@@ -14,7 +14,7 @@ import com.project.my.board.repository.BoardConfigRepository;
 import com.project.my.board.repository.BoardRepository;
 import com.project.my.board.entity.Comment;
 import com.project.my.board.repository.CommentRepository;
-import com.project.my.board.repository.BoardQueryRepository;
+//import com.project.my.board.repository.BoardQueryRepository;
 import com.project.my.user.entity.Users;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,7 @@ public class BoardService{
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
     private final Util util;
-    private final BoardQueryRepository boardRepoImpl;
+//    private final BoardQueryRepository boardRepoImpl;
     private final BoardConfigRepository boardConfigRepository;
 
     /*
@@ -125,12 +125,12 @@ public class BoardService{
         return dto;
     }
 
-    @Transactional(readOnly = true)
-    public Object boardList(SearchDto dto, Pageable pageable) {
-
-        return boardRepoImpl.boardList(dto,pageable)
-                .map(BoardDto:: new);
-    }
+//    @Transactional(readOnly = true)
+//    public Object boardList(SearchDto dto, Pageable pageable) {
+//
+//        return boardRepoImpl.boardList(dto,pageable)
+//                .map(BoardDto:: new);
+//    }
 
 
 //    /*

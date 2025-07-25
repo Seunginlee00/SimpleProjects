@@ -1,27 +1,20 @@
 package com.project.my.auth.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class AccessLogDTO {
-    private int no; // ✅ 일련번호 필드 추가
-    private String uid;  // 암호화된 UID
-    private String ipaddr;
-    private String date;
-    private String time;
-    private String OS;
-    private String browser;
-    private String login_id;
-    private String userNm;
-    private int success;
-    private int route;
-    private int errCode;
 
-    private String errorMessage; // 추가: errCode → 메시지 매핑용
+public record AccessLogDTO(
+      int no, // ✅ 일련번호 필드 추가
+      String uid,  // 암호화된 UID
+      String ipaddr,
+      String date,
+      String time,
+      String OS,
+      String browser,
+      String login_id,
+      String userNm,
+      int success,
+      int route,
+      int errCode,
+      String errorMessage // 추가: errCode → 메시지 매핑용
+) {
 }

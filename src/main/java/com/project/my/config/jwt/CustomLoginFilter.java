@@ -1,3 +1,4 @@
+/*
 package com.project.my.config.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,11 +41,13 @@ public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
         setFilterProcessesUrl("/api/member/login"); // 로그인 처리 URL 지정
     }
 
-    /**
+    */
+/**
      * LoginFilter는 기본적으로 x-www-form-urlencoded 데이터를 처리
      * UsernamePasswordAuthenticationFilter는 기본적으로 application/x-www-form-urlencoded 방식만 지원
      * JSON 요청(application/json)은 직접 request.getInputStream()으로 읽어야 함
-     */
+     *//*
+
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
@@ -98,3 +101,4 @@ public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
         }
     }
 }
+*/

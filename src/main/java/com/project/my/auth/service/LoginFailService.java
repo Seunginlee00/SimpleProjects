@@ -1,3 +1,4 @@
+/*
 package com.project.my.auth.service;
 
 import lombok.RequiredArgsConstructor;
@@ -14,17 +15,21 @@ public class LoginFailService {
   private final LDAPAuthFailServiceImpl ldapAuthFailService;
   private final AllowHostRepository allowHostRepository;
 
-  /**
+  */
+/**
    * IP 차단 여부 확인 후 해제 가능 여부 판단
-   */
+   *//*
+
   public boolean isIPBlocked(String ip, int type) {
     int checkResult = accessLogService.checkIPBlock(ip, type);
     return checkResult == 8; // 8: 차단 유지 중
   }
 
-  /**
+  */
+/**
    * 로그인 실패 5회 이상이면 시간 차 검사 후 계정 잠금 판단
-   */
+   *//*
+
   public int isUserLocked(HttpServletRequest request,String userId, String clientIP) {
     // 사용자 정보가 존재하는지 확인
     boolean userExists = memberRepository.countByUserId(userId) > 0;
@@ -95,24 +100,30 @@ public class LoginFailService {
     return 0; // 조회 결과가 없으면 기본값 0
   }
 
-  /**
+  */
+/**
    * 로그인 실패 기록 및 실패 횟수 증가
-   */
+   *//*
+
   public void recordLoginFail(String userId, HttpServletRequest request) {
     accessLogService.saveAccessLog(request, userId, 0, 1, 5, null);
     memberRepository.incrementLoginFail(LocalDateTime.now(), userId);
   }
 
-  /**
+  */
+/**
    * 실패 횟수 만료 시 초기화
-   */
+   *//*
+
   public void clearLoginFail(String userId) {
     memberRepository.clearLoginFailCount(userId);
   }
 
-  /**
+  */
+/**
    * 현재 실패 횟수 반환
-   */
+   *//*
+
   public int getCurrentFailCount(String userId) {
     return memberRepository.findAccessFailedCountByUserId(userId).orElse(0);
   }
@@ -164,3 +175,4 @@ public class LoginFailService {
     return count == 1;
   }
 }
+*/
