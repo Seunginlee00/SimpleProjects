@@ -2,8 +2,6 @@ package com.project.java.user;
 
 import com.project.java.config.UserServiceTestConfig;
 import com.project.my.MainApplication;
-import com.project.my.user.dto.UserRegisterRequest;
-import com.project.my.user.entity.Role;
 import com.project.my.user.entity.Users;
 import com.project.my.user.repository.UsersRepository;
 import com.project.my.user.service.UserService;

@@ -2,10 +2,7 @@ package com.project.my.user.service;
 
 import com.project.my.common.exception.ApiException;
 import com.project.my.common.exception.ExceptionData;
-import com.project.my.user.dto.UserRegisterRequest;
-import com.project.my.user.dto.UserResponseDto;
 import com.project.my.common.dto.response.SearchDto;
-import com.project.my.user.dto.UserResponse;
 import com.project.my.user.entity.Users;
 import com.project.my.user.repository.UserQueryRepository;
 import com.project.my.user.repository.UsersRepository;

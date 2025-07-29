@@ -2,7 +2,6 @@ package com.project.my.user.controller;
 
 
 import com.project.my.auth.service.Auth;
-import com.project.my.user.dto.UserRegisterRequest;
 import com.project.my.common.dto.response.SearchDto;
 import com.project.my.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;

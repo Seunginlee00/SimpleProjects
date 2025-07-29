@@ -2,7 +2,6 @@ package com.project.my.common.dto.response;
 
 
 import com.project.my.board.entity.BoardType;
-import com.project.my.user.entity.Role;
 
 public record SearchDto(
        //날짜

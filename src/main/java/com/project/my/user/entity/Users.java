@@ -1,7 +1,6 @@
 package com.project.my.user.entity;
 
 import com.project.my.common.entity.BaseEntity;
-import com.project.my.user.dto.UserRegisterRequest;
 import com.project.my.board.entity.Board;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -84,11 +83,9 @@ public class Users extends BaseEntity {
     @OneToMany(mappedBy = "users")
     List<Board> boardList = new ArrayList<>();
 
+    @Builder.Default
+    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<UserRoleList> roleList = new ArrayList<>();
 
-//    public void update(UserRegisterRequest request, String password) {
-//        this.email = request.email();
-//        this.nickname = request.nickname();
-//        if(password != null) {}
-//            this.password = password;
-//    }
+
 }
