@@ -1,4 +1,4 @@
-package com.project.my.common;
+package com.project.my.common.util;
 
 public class MaskingUtil {
 

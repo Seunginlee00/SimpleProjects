@@ -1,7 +1,7 @@
 package com.project.my.config.security;
 
 import com.project.my.config.jwt.JwtProvider;
-import com.project.my.config.jwt.LoginFilter;
+//import com.project.my.config.jwt.LoginFilter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
@@ -53,10 +53,10 @@ public class SecurityConfig {
 //                .cors(cors -> cors.configurationSource(new CorsConfig().corsConfiguration()))
 
                 .httpBasic(auth -> auth.disable())
-                .addFilterAt(
-                        new LoginFilter(authenticationManager(authenticationConfiguration), jwtProvider),
-                        UsernamePasswordAuthenticationFilter.class
-                )
+//                .addFilterAt(
+//                        new LoginFilter(authenticationManager(authenticationConfiguration), jwtProvider),
+//                        UsernamePasswordAuthenticationFilter.class
+//                )
                 .sessionManagement(sessionManagement ->
                 sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 

@@ -14,7 +14,7 @@ import org.hibernate.annotations.Where;
 @Builder
 @Where(clause = "is_delete = false")
 @SQLDelete(sql = "UPDATE tb_comment SET is_delete = true, modified_date = now() WHERE comment_id = ?")
-@Table(name = "TB_COMMENT")
+@Table(name = "comment")
 public class Comment extends com.project.my.common.entity.BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

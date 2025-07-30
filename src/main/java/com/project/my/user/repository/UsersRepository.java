@@ -13,7 +13,7 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
     Optional<Users> findByLoginId(String loginId);
     Boolean existsByLoginId(String loginId);
 
-    @Query("SELECT u FROM Users u LEFT JOIN FETCH u.roleList WHERE u.lgoinId = :loginId")
+    @Query("SELECT u FROM Users u LEFT JOIN FETCH u.roleList WHERE u.loginId = :loginId")
     Users getWithRoles(@Param("loginId") String loginId);
 
 

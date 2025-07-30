@@ -17,7 +17,7 @@ import org.hibernate.annotations.Where;
 @Builder
 @Where(clause = "is_delete = false")
 @SQLDelete(sql = "UPDATE tb_board SET is_delete = true, modified_date = now() WHERE board_id = ?")
-@Table(name = "TB_BOARD")
+@Table(name = "board")
 public class Board extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 @Getter
-@Table(name = "TB_BOARD_CONFIG")
+@Table(name = "board_config")
 public class BoardConfig {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)

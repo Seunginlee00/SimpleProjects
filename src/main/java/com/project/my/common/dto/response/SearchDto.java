@@ -13,10 +13,7 @@ public record SearchDto(
 
        //검색어
         String searchType,
-        String searchValue,
+        String searchValue
 
-//        Boolean isUse,
-       // 권한
-       Role role
 ) {
 }

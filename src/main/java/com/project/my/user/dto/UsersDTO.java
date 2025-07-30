@@ -1,13 +1,18 @@
 package com.project.my.user.dto;
-import com.project.my.user.entity.Users;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
+@Getter
+@Setter
+@ToString
 public class UsersDTO extends User
 {
 

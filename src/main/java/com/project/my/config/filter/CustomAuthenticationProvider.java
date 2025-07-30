@@ -1,8 +1,14 @@
 package com.project.my.config.filter;
 
+import com.project.my.config.service.CustomUserDetailsService;
+import com.project.my.user.dto.UsersDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 
 @Slf4j
@@ -20,7 +26,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
     //log.info("📌 복호화된 비밀번호: {}", rawPassword);
 
-    MemberDTO userDetails = (MemberDTO) userDetailsService.loadUserByUsername(userId);
+    UsersDTO userDetails = (UsersDTO) userDetailsService.loadUserByUsername(userId);
     String encoded = userDetails.getPassword();
     String salt = userDetails.getSalt();
 

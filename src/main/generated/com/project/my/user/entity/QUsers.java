@@ -60,6 +60,8 @@ public class QUsers extends EntityPathBase<Users> {
 
     public final DateTimePath<java.time.LocalDateTime> passwdChangeDate = createDateTime("passwdChangeDate", java.time.LocalDateTime.class);
 
+    public final ListPath<UserRoleList, QUserRoleList> roleList = this.<UserRoleList, QUserRoleList>createList("roleList", UserRoleList.class, QUserRoleList.class, PathInits.DIRECT2);
+
     public final StringPath salt = createString("salt");
 
     public final StringPath userNm = createString("userNm");

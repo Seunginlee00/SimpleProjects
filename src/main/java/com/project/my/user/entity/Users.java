@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.annotations.SQLDelete;
 
-@Table(name = "TB_USERS")
+@Table(name = "users")
 @Getter
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@SQLDelete(sql = "UPDATE tb_users SET is_delete = true, modified_date = now()  WHERE users_id = ?")
+@SQLDelete(sql = "UPDATE users SET is_delete = true, modified_date = now()  WHERE users_id = ?")
 public class Users extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

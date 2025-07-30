@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tb_access_log")  // 소문자로 통일
+@Table(name = "access_log")  // 소문자로 통일
 @Getter
 @Setter
 @NoArgsConstructor

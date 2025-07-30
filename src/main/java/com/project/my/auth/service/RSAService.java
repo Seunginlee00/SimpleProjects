@@ -1,6 +1,6 @@
 package com.project.my.auth.service;
 
-import com.project.my.common.CryptoUtil;
+import com.project.my.common.util.CryptoUtil;
 import org.springframework.stereotype.Service;
 
 import java.security.KeyPair;

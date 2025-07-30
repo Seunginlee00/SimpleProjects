@@ -1,9 +1,11 @@
-/*
-package com.project.my.config.jwt;
+package com.project.my.config.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.project.my.auth.dto.LoginReqDTO;
 import com.project.my.auth.service.RSAService;
+import com.project.my.common.InputSanitizer;
+import com.project.my.common.util.ClientInfo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.log4j.Log4j2;
@@ -19,35 +21,35 @@ import java.io.IOException;
 public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
     private final RSAService rsaService;
-    private final LoginFailService loginFailService;
-    private final LDAPAuthFailService ldapAuthFailService;
-    private final JwtTokenStoreService jwtTokenStoreService;
+//    private final LoginFailService loginFailService;
+//    private final LDAPAuthFailService ldapAuthFailService;
+//    private final JwtTokenStoreService jwtTokenStoreService;
 
-    public CustomLoginFilter(AuthenticationManager authenticationManager, RSAService rsaService,
-                             LoginFailService loginFailService,
-                             LDAPAuthFailService ldapAuthFailService,
-                             JwtTokenStoreService jwtTokenStoreService
+    public CustomLoginFilter(AuthenticationManager authenticationManager, RSAService rsaService
+
+
+//                             LoginFailService loginFailService,
+//                             LDAPAuthFailService ldapAuthFailService,
+//                             JwtTokenStoreService jwtTokenStoreService
     ) {
         this.authenticationManager = authenticationManager;
         this.rsaService = rsaService;
-        this.loginFailService = loginFailService;
-        this.ldapAuthFailService = ldapAuthFailService;
-        this.jwtTokenStoreService = jwtTokenStoreService;
+//        this.loginFailService = loginFailService;
+//        this.ldapAuthFailService = ldapAuthFailService;
+//        this.jwtTokenStoreService = jwtTokenStoreService;
 
         // 로그인 성공/실패 핸들러
-        setAuthenticationSuccessHandler(new APILoginSuccessHandler(loginFailService, jwtTokenStoreService));
-        setAuthenticationFailureHandler(new APILoginFailHandler(loginFailService, ldapAuthFailService));
+//        setAuthenticationSuccessHandler(new APILoginSuccessHandler(loginFailService, jwtTokenStoreService));
+//        setAuthenticationFailureHandler(new APILoginFailHandler(loginFailService, ldapAuthFailService));
 
         setFilterProcessesUrl("/api/member/login"); // 로그인 처리 URL 지정
     }
 
-    */
-/**
+    /**
      * LoginFilter는 기본적으로 x-www-form-urlencoded 데이터를 처리
      * UsernamePasswordAuthenticationFilter는 기본적으로 application/x-www-form-urlencoded 방식만 지원
      * JSON 요청(application/json)은 직접 request.getInputStream()으로 읽어야 함
-     *//*
-
+     */
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
@@ -74,21 +76,21 @@ public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
 
             request.setAttribute("userId", username); // 이게 있어야 위에서 읽힘
 
-            // ✅ 차단 로직
-            if (loginFailService.isIPBlocked(clientIP, 1) || loginFailService.isIPBlocked(clientIP, 2)) {
-                throw new BadCredentialsException("LOGIN_BLOCKED_IP");
-            }
-
-            // ✅ 계정 잠금 검사 (0 = 정상, 7 = 차단유지)
-            int lockResult = loginFailService.isUserLocked(request, username, clientIP);
-            if (lockResult == 7) {
-                throw new LoginFailedException("LOCKED_USER", username);
-            }
-
-            if (loginFailService.isUserExisted(username) == 0) {
-                log.info("🛡️ UNKNOWN_USER - IP: {}, userId: {}", clientIP, username);
-                throw new LoginFailedException("UNKNOWN_USER", username);
-            }
+//            // ✅ 차단 로직
+//            if (loginFailService.isIPBlocked(clientIP, 1) || loginFailService.isIPBlocked(clientIP, 2)) {
+//                throw new BadCredentialsException("LOGIN_BLOCKED_IP");
+//            }
+//
+//            // ✅ 계정 잠금 검사 (0 = 정상, 7 = 차단유지)
+//            int lockResult = loginFailService.isUserLocked(request, username, clientIP);
+//            if (lockResult == 7) {
+//                throw new LoginFailedException("LOCKED_USER", username);
+//            }
+//
+//            if (loginFailService.isUserExisted(username) == 0) {
+//                log.info("🛡️ UNKNOWN_USER - IP: {}, userId: {}", clientIP, username);
+//                throw new LoginFailedException("UNKNOWN_USER", username);
+//            }
 
             // 통과 시 로그인 시도
             UsernamePasswordAuthenticationToken authRequest = UsernamePasswordAuthenticationToken.unauthenticated(username, password);
@@ -101,4 +103,3 @@ public class CustomLoginFilter extends UsernamePasswordAuthenticationFilter {
         }
     }
 }
-*/
