@@ -5,6 +5,7 @@ import com.project.my.user.entity.Users;
 public record UsersRequest(
     Long id,
     String loginId,
+    String passwd,
     String userNm,
     String email,
     String mobileNo,
